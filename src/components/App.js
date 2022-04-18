@@ -1,5 +1,4 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
 import NavBar from "./NavBar";
 import ItemList from "./ItemList";
 import NewItemForm from "./NewItemForm";
