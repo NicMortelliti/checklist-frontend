@@ -6,17 +6,16 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
-    "react": "~16.8.0",
-    "react-dom": "~16.8.0",
-    "react-scripts": "5.0.1",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.1.2",
-    "web-vitals": "^2.1.4"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "semantic-ui-css": "1.11"
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "json-server --watch db.json -p 3001",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "echo \".results.json\" && react-scripts test --reporters=@learn-co-curriculum/jest-learn-reporter --reporters=default --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
