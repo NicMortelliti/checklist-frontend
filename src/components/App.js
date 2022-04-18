@@ -1,5 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import NavBar from "./NavBar";
+import ItemList from "./ItemList";
+import NewItemForm from "./NewItemForm";
 
 function App() {
   return (
