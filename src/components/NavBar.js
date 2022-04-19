@@ -27,7 +27,7 @@ function NavBar({ currentAC }) {
             key={phase}
             name={phase}
             active={activePhase === phase}
-            onClick={phase => setActivePhase(phase)}
+            onClick={() => setActivePhase(phase)}
           />
         );
       })}
