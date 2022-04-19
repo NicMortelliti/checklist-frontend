@@ -1,8 +1,17 @@
 import React from "react";
+import { Container } from 'semantic-ui-react'
 
-function Item({itemData}) {
+
+function Item({itemData:{
+  id,
+  tail,
+  phase,
+  description,
+  response}}) {
   return (
-    <p>{itemData.id}</p>
+    <Container>
+      <p key={id}>{`${tail}: ${phase} ${description} - ${response}`}</p>
+    </Container>
   );
 }
 
