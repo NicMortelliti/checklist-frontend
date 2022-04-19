@@ -5,7 +5,7 @@ import { AcContext } from "../context/ac";
 function NavBar() {
   const [activePhase, setActivePhase] = useState("");
 
-  const {ac} = useContext(AcContext)
+  const { ac, setAc } = useContext(AcContext);
 
   const phases = [
     "Preflight",
@@ -22,7 +22,7 @@ function NavBar() {
 
   return (
     <Menu>
-      <Menu.Item name="" onClick={() => console.log("Clicked back button")}>
+      <Menu.Item name="" onClick={() => setAc("")}>
         <Icon name="chevron left" />
       </Menu.Item>
       <Menu.Item header>{ac}</Menu.Item>
