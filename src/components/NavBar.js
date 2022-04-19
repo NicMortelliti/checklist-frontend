@@ -22,22 +22,24 @@ function NavBar() {
 
   return (
     <Menu>
-      <Menu.Item name="" onClick={() => setAc("")}>
+      {/* Back button */}
+      <Menu.Item onClick={() => setAc("")}>
         <Icon name="chevron left" />
       </Menu.Item>
-      <Menu.Item header>{ac}</Menu.Item>
-      {phases.map(phase => {
-        return (
-          <Menu.Item
-            key={phase}
-            name={phase}
-            active={activePhase === phase}
-            onClick={() => setActivePhase(phase)}
-          />
-        );
-      })}
+
+      {/* Phase of flight buttons */}
+      {ac !== ""
+        ? ((<Menu.Item header>{ac}</Menu.Item>),
+          phases.map(phase => (
+            <Menu.Item
+              key={phase}
+              name={phase}
+              active={activePhase === phase}
+              onClick={() => setActivePhase(phase)}
+            />
+          )))
+        : null}
     </Menu>
   );
 }
-
 export default NavBar;
