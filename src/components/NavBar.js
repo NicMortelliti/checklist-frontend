@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Icon, Menu } from "semantic-ui-react";
 
-function NavBar({ currentAC }) {
+function NavBar({ currentAc }) {
   const [activePhase, setActivePhase] = useState("");
 
   const phases = [
@@ -22,7 +22,7 @@ function NavBar({ currentAC }) {
       <Menu.Item name="" onClick={() => console.log("Clicked back button")}>
         <Icon name="chevron left" />
       </Menu.Item>
-      <Menu.Item header>{currentAC}</Menu.Item>
+      <Menu.Item header>{currentAc}</Menu.Item>
       {phases.map(phase => {
         return (
           <Menu.Item
