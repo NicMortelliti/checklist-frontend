@@ -9,7 +9,8 @@ const URL = "http://localhost:3000/checklist";
 function App() {
   // Initialize and set up setter for server data state
   const [rawDataArray, setRawDataArray] = useState([]);
-  const [currentAC, setCurrentAC] = useState("N6044P");
+  const [currentAc, setCurrentAc] = useState("");
+  const [acArray, setAcArray] = useState([]);
 
   // Fetch GET checklist data
   useEffect(() => {
@@ -18,14 +19,27 @@ function App() {
       .then(data => setRawDataArray(data));
   }, []);
 
+  useEffect(() => {
+    let newArray = [];
+    rawDataArray.map(item => {
+      return newArray.includes(item.tail) ? null : newArray.push(item.tail);
+    });
+
+    setAcArray(newArray);
+  }, [rawDataArray]);
+
   return (
     <Container style={{ margin: 20 }}>
       <div className="App">
         <header className="App-header">
-          <NavBar currentAC={currentAC} />
+          <NavBar currentAc={currentAc} />
         </header>
         <div>
-          <ItemList currentAC={currentAC} checklistItems={rawDataArray} />
+          <ItemList
+            currentAc={currentAc}
+            acArray={acArray}
+            checklistItems={rawDataArray}
+          />
           <NewItemForm />
         </div>
       </div>
