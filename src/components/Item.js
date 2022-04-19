@@ -1,7 +1,9 @@
 import React from "react";
 
 function Item() {
-  return null;
+  return (
+    <p>Item component loaded</p>
+  );
 }
 
 export default Item;
