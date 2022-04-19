@@ -1,7 +1,12 @@
 import React from "react";
+import { Button } from "semantic-ui-react";
 
 function AcItem({ itemData }) {
-  return <h3>{itemData}</h3>;
+  return (
+    <Button size="massive" fluid>
+      {itemData}
+    </Button>
+  );
 }
 
 export default AcItem;
