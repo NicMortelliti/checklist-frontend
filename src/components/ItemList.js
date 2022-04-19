@@ -5,7 +5,7 @@ function ItemList({checklistItems}) {
   return (
     <div>
       {checklistItems.map(item => {
-        return <Item itemData={item}/>})
+        return <Item key={item.id} itemData={item}/>})
   }
     </div>
 

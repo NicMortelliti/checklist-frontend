@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from 'semantic-ui-react'
+import { Card, Button } from 'semantic-ui-react'
 
 
 function Item({itemData:{
@@ -9,9 +9,10 @@ function Item({itemData:{
   description,
   response}}) {
   return (
-    <Container>
-      <p key={id}>{`${tail}: ${phase} ${description} - ${response}`}</p>
-    </Container>
+    <Card>
+      <p>{description}</p>
+      <Button color='green'>{response}</Button>
+    </Card>
   );
 }
 
