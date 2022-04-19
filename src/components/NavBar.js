@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Icon, Menu } from "semantic-ui-react";
+import { AcContext } from "../context/ac";
 
-function NavBar({ currentAc }) {
+function NavBar() {
   const [activePhase, setActivePhase] = useState("");
+
+  const {ac} = useContext(AcContext)
 
   const phases = [
     "Preflight",
@@ -22,7 +25,7 @@ function NavBar({ currentAc }) {
       <Menu.Item name="" onClick={() => console.log("Clicked back button")}>
         <Icon name="chevron left" />
       </Menu.Item>
-      <Menu.Item header>{currentAc}</Menu.Item>
+      <Menu.Item header>{ac}</Menu.Item>
       {phases.map(phase => {
         return (
           <Menu.Item

@@ -3,13 +3,13 @@ import NavBar from "./NavBar";
 import ItemList from "./ItemList";
 import NewItemForm from "./NewItemForm";
 import { Container } from "semantic-ui-react";
+import { AcProvider } from "../context/ac";
 
 const URL = "http://localhost:3000/checklist";
 
 function App() {
-  // Initialize and set up setter for server data state
+  // Set up states
   const [rawDataArray, setRawDataArray] = useState([]);
-  const [currentAc, setCurrentAc] = useState("");
   const [acArray, setAcArray] = useState([]);
 
   // Fetch GET checklist data
@@ -31,17 +31,11 @@ function App() {
   return (
     <Container style={{ margin: 20 }}>
       <div className="App">
-        <header className="App-header">
-          <NavBar currentAc={currentAc} />
-        </header>
-        <div>
-          <ItemList
-            currentAc={currentAc}
-            acArray={acArray}
-            checklistItems={rawDataArray}
-          />
+        <AcProvider>
+          <NavBar />
+          <ItemList acArray={acArray} checklistItems={rawDataArray} />
           <NewItemForm />
-        </div>
+        </AcProvider>
       </div>
     </Container>
   );
