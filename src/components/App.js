@@ -25,7 +25,7 @@ function App() {
           <NavBar currentAC={currentAC} />
         </header>
         <div>
-          <ItemList checklistItems={rawDataArray} />
+          <ItemList currentAC={currentAC} checklistItems={rawDataArray} />
           <NewItemForm />
         </div>
       </div>
