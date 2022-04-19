@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     fetch(URL)
       .then(r => r.json())
-      .then(setRawDataArray());
+      .then(data => setRawDataArray(data));
   }, []);
 
   return (

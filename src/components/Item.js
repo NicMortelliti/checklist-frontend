@@ -1,8 +1,8 @@
 import React from "react";
 
-function Item() {
+function Item({itemData}) {
   return (
-    <p>Item component loaded</p>
+    <p>{itemData.id}</p>
   );
 }
 

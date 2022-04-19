@@ -1,9 +1,14 @@
 import React from "react";
 import Item from "./Item";
 
-function ItemList() {
+function ItemList({checklistItems}) {
   return (
-    <Item />
+    <div>
+      {checklistItems.map(item => {
+        return <Item itemData={item}/>})
+  }
+    </div>
+
   );
 }
 
