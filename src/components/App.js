@@ -7,7 +7,8 @@ const URL = "http://localhost:3000/checklist";
 
 function App() {
   // Initialize and set up setter for server data state
-  const [rawDataArray, setRawDataArray] = useState([])
+  const [rawDataArray, setRawDataArray] = useState([]);
+  const [currentAC, setCurrentAC] = useState("N6044P");
 
   // Fetch GET checklist data
   useEffect(() => {
@@ -19,10 +20,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <NavBar />
+        <NavBar currentAC={currentAC} />
       </header>
       <div>
-        <ItemList checklistItems={rawDataArray}/>
+        <ItemList checklistItems={rawDataArray} />
         <NewItemForm />
       </div>
     </div>
