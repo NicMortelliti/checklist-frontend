@@ -11,6 +11,7 @@ function App() {
   // Set up states
   const [rawDataArray, setRawDataArray] = useState([]);
   const [acArray, setAcArray] = useState([]);
+  const [activePhase, setActivePhase] = useState("");
 
   // Fetch GET checklist data
   useEffect(() => {
@@ -32,8 +33,12 @@ function App() {
     <Container style={{ margin: 20 }}>
       <div className="App">
         <AcProvider>
-          <NavBar />
-          <ItemList acArray={acArray} checklistItems={rawDataArray} />
+          <NavBar activePhase={activePhase} setActivePhase={setActivePhase} />
+          <ItemList
+            acArray={acArray}
+            checklistItems={rawDataArray}
+            activePhase={activePhase}
+          />
           <NewItemForm />
         </AcProvider>
       </div>

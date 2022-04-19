@@ -3,7 +3,7 @@ import Item from "./Item";
 import AcItem from "./AcItem";
 import { AcContext } from "../context/ac";
 
-function ItemList({ acArray, checklistItems }) {
+function ItemList({ acArray, checklistItems, activePhase }) {
   const { ac } = useContext(AcContext);
   return (
     <div>
@@ -12,8 +12,10 @@ function ItemList({ acArray, checklistItems }) {
         ac === ""
           ? acArray.map(ac => <AcItem key={ac} itemData={ac} />)
           : checklistItems.map(item =>
-              ac === item.tail ? ( // If checklist item tail number matches currentAC, render it.
-                <Item key={item.id} itemData={item} />
+              ac === item.tail ? (
+                activePhase === item.phase ? (
+                  <Item key={item.id} itemData={item} />
+                ) : null
               ) : null
             )
       }

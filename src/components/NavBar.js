@@ -2,9 +2,7 @@ import React, { useContext, useState } from "react";
 import { Icon, Menu } from "semantic-ui-react";
 import { AcContext } from "../context/ac";
 
-function NavBar() {
-  const [activePhase, setActivePhase] = useState("");
-
+function NavBar({ activePhase, setActivePhase }) {
   const { ac, setAc } = useContext(AcContext);
 
   const phases = [
