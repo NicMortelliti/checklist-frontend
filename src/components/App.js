@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import ItemList from "./ItemList";
 import NewItemForm from "./NewItemForm";
+import { Container } from "semantic-ui-react";
 
 const URL = "http://localhost:3000/checklist";
 
@@ -18,15 +19,17 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <NavBar currentAC={currentAC} />
-      </header>
-      <div>
-        <ItemList checklistItems={rawDataArray} />
-        <NewItemForm />
+    <Container style={{ margin: 20 }}>
+      <div className="App">
+        <header className="App-header">
+          <NavBar currentAC={currentAC} />
+        </header>
+        <div>
+          <ItemList checklistItems={rawDataArray} />
+          <NewItemForm />
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }
 
