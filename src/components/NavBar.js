@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Icon, Menu } from "semantic-ui-react";
 import { AcContext } from "../context/ac";
 
