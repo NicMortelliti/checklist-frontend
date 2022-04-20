@@ -19,7 +19,7 @@ function NavBar({ activePhase, setActivePhase }) {
   ];
 
   return (
-    <Menu>
+    <Menu fixed="top">
       {/* Back button */}
       <Menu.Item onClick={() => setAc("")}>
         <Icon name="chevron left" />
