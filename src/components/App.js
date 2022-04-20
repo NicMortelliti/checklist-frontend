@@ -5,7 +5,7 @@ import NewItemForm from "./NewItemForm";
 import { Container } from "semantic-ui-react";
 import { AcProvider } from "../context/ac";
 
-const URL = "http://localhost:3000/checklist";
+const URL = "http://localhost:3000";
 
 function App() {
   // Set up states
@@ -15,19 +15,16 @@ function App() {
 
   // Fetch GET checklist data
   useEffect(() => {
-    fetch(URL)
+    fetch(`${URL}/checklist`)
       .then(r => r.json())
       .then(data => setRawDataArray(data));
   }, []);
 
   useEffect(() => {
-    let newArray = [];
-    rawDataArray.map(item => {
-      return newArray.includes(item.tail) ? null : newArray.push(item.tail);
-    });
-
-    setAcArray(newArray);
-  }, [rawDataArray]);
+    fetch(`${URL}/aircraft`)
+      .then(r => r.json())
+      .then(data => setAcArray(data));
+  }, []);
 
   return (
     <Container style={{ margin: 20 }}>

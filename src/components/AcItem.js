@@ -6,8 +6,8 @@ function AcItem({ itemData }) {
   const { setAc } = useContext(AcContext);
 
   return (
-    <Card raised fluid onClick={() => setAc(itemData)}>
-      <Card.Header textAlign="center">{itemData}</Card.Header>
+    <Card raised fluid onClick={() => setAc(itemData.tail)}>
+      <Card.Header textAlign="center">{itemData.tail}</Card.Header>
     </Card>
   );
 }
