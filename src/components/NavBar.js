@@ -8,14 +8,9 @@ function NavBar({ activePhase, setActivePhase }) {
   const phases = [
     "Preflight",
     "Taxi",
-    "Runup",
     "Takeoff",
-    "Climb",
     "Cruise",
-    "Descent",
     "Landing",
-    "After Landing",
-    "Shutdown",
   ];
 
   return (
