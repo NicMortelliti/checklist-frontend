@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Segment, Button } from "semantic-ui-react";
 
 function Item({ itemData: { id, tail, phase, description, response } }) {
+  const [checkedState, setCheckedState] = useState(false);
+
   return (
     <>
       <Segment attached="top">{description}</Segment>
       <Button
+        toggle
         attached="bottom"
-        content={response}
-        onClick={() => console.log(response)}
+        active={checkedState}
+        content={checkedState ? null : response}
+        icon={checkedState ? "check" : null}
+        onClick={() => setCheckedState(!checkedState)}
       />
     </>
   );
