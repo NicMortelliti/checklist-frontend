@@ -21,9 +21,11 @@ function NavBar({ activePhase, setActivePhase }) {
   return (
     <Menu tabular attached="top">
       {/* Back button */}
-      <Menu.Item onClick={() => setAc("")}>
-        <Icon name="chevron left" />
-      </Menu.Item>
+      {ac !== "" ? (
+        <Menu.Item onClick={() => setAc("")}>
+          <Icon name="chevron left" />
+        </Menu.Item>
+      ) : null}
 
       {/* Phase of flight buttons */}
       {ac !== ""
