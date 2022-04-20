@@ -1,8 +1,30 @@
 import React, { useState } from "react";
-import { Modal } from "semantic-ui-react";
+import { Form, Input, Modal, Select } from "semantic-ui-react";
 
 function NewItemForm() {
   const [modalState, setModalState] = useState(true);
+
+  const phaseOptions = [
+    { key: "preflight", text: "Preflight", value: "preflight" },
+    { key: "taxi", text: "Taxi", value: "taxi" },
+    { key: "takeoff", text: "Takeoff", value: "takeoff" },
+    { key: "cruise", text: "Cruise", value: "cruise" },
+    { key: "landing", text: "Landing", value: "landing" },
+  ];
+
+  const responseOptions = [
+    { key: "accessible", text: "ACCESSIBLE", value: "accessible" },
+    { key: "check", text: "CHECK", value: "check" },
+    { key: "complete", text: "COMPLETE", value: "complete" },
+    { key: "extend", text: "EXTEND", value: "extend" },
+    { key: "latched", text: "LATCHED", value: "latched" },
+    { key: "off", text: "OFF", value: "off" },
+    { key: "on", text: "ON", value: "on" },
+    { key: "present", text: "PRESENT", value: "present" },
+    { key: "retract", text: "RETRACT", value: "retract" },
+    { key: "set", text: "SET", value: "set" },
+  ];
+
   return (
     <Modal
       dimmer="blurring"
@@ -11,6 +33,27 @@ function NewItemForm() {
       open={modalState}
     >
       <Modal.Header>Add new checklist item</Modal.Header>
+      <Modal.Content>
+        <Form>
+          <Form.Field
+            control={Select}
+            label="Phase of flight"
+            options={phaseOptions}
+            placeholder="Phase"
+          />
+          <Form.Field
+            control={Input}
+            label='Description ("call")'
+            placeholder="Fuel Quantity"
+          />
+          <Form.Field
+            control={Select}
+            label="Response"
+            options={responseOptions}
+            placeholder="Response"
+          />
+        </Form>
+      </Modal.Content>
     </Modal>
   );
 }
