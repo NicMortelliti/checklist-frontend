@@ -25,6 +25,7 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
         );
       })}
       <Menu.Item
+        disabled={ac === ""}
         onClick={() => setModalState(true)}
         position="right"
         name="Add"
