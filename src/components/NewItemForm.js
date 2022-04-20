@@ -2,9 +2,7 @@ import React, { useContext, useState } from "react";
 import { Form, Input, Modal, Select } from "semantic-ui-react";
 import { AcContext } from "../context/ac";
 
-function NewItemForm() {
-  const [modalState, setModalState] = useState(true);
-
+function NewItemForm({ modalState, setModalState }) {
   const { ac } = useContext(AcContext);
 
   const phaseOptions = [

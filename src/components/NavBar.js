@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Icon, Menu } from "semantic-ui-react";
 import { AcContext } from "../context/ac";
 
-function NavBar({ activePhase, setActivePhase }) {
+function NavBar({ activePhase, setActivePhase, setModalState }) {
   const { ac, setAc } = useContext(AcContext);
 
   const phases = ["Preflight", "Taxi", "Takeoff", "Cruise", "Landing"];
@@ -25,7 +25,7 @@ function NavBar({ activePhase, setActivePhase }) {
         );
       })}
       <Menu.Item
-        onClick={() => console.log("Clicked Add")}
+        onClick={() => setModalState(true)}
         position="right"
         name="Add"
       />
