@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Form, Input, Modal, Select } from "semantic-ui-react";
+import React, { useContext } from "react";
+import { Button, Form, Input, Modal, Select } from "semantic-ui-react";
 import { AcContext } from "../context/ac";
 
 function NewItemForm({ modalState, setModalState }) {
@@ -37,22 +37,26 @@ function NewItemForm({ modalState, setModalState }) {
       <Modal.Content>
         <Form>
           <Form.Field
+            required
             control={Select}
             label="Phase of flight"
             options={phaseOptions}
             placeholder="Phase"
           />
           <Form.Field
+            required
             control={Input}
             label='Description ("call")'
             placeholder="Fuel Quantity"
           />
           <Form.Field
+            required
             control={Select}
             label="Response"
             options={responseOptions}
             placeholder="Response"
           />
+          <Button type="submit">Submit</Button>
         </Form>
       </Modal.Content>
     </Modal>
