@@ -1,13 +1,17 @@
 import React, { useContext } from "react";
-import { Card } from "semantic-ui-react";
+import { Card, Image } from "semantic-ui-react";
 import { AcContext } from "../context/ac";
 
 function AcItem({ itemData }) {
   const { setAc } = useContext(AcContext);
 
   return (
-    <Card raised fluid onClick={() => setAc(itemData.tail)}>
-      <Card.Header textAlign="center">{itemData.tail}</Card.Header>
+    <Card fluid onClick={() => setAc(itemData.tail)}>
+      <Image src={itemData.image} wrapped ui={false} />
+      <Card.Content>
+        <Card.Header>{itemData.tail}</Card.Header>
+        <Card.Description>{itemData.model}</Card.Description>
+      </Card.Content>
     </Card>
   );
 }
