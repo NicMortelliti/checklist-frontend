@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import Item from "./Item";
 import AcItem from "./AcItem";
 import { AcContext } from "../context/ac";
+import { Container } from "semantic-ui-react";
 
 function ItemList({ acArray, checklistItems, activePhase }) {
   const { ac } = useContext(AcContext);
   return (
-    <div>
+    <Container>
       {
         // If CurrentAC is not blank, list checklist items for selected aircraft
         ac === ""
@@ -19,7 +20,7 @@ function ItemList({ acArray, checklistItems, activePhase }) {
               ) : null
             )
       }
-    </div>
+    </Container>
   );
 }
 
