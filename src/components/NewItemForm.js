@@ -1,9 +1,12 @@
-import React, { useContext } from "react";
-import { Button, Form, Input, Modal, Select } from "semantic-ui-react";
+import React, { useContext, useState } from "react";
+import { Button, Form, Input, Message, Modal, Select } from "semantic-ui-react";
 import { AcContext } from "../context/ac";
 
-function NewItemForm({ modalState, setModalState }) {
+function NewItemForm({ modalState, setModalState, url }) {
   const { ac } = useContext(AcContext);
+  const [phase, setPhase] = useState("");
+  const [call, setCall] = useState("");
+  const [response, setResponse] = useState("");
 
   const phaseOptions = [
     { key: "preflight", text: "Preflight", value: "preflight" },
@@ -26,8 +29,19 @@ function NewItemForm({ modalState, setModalState }) {
     { key: "set", text: "SET", value: "set" },
   ];
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(phase, call, response);
+    <Message
+      success
+      header="Successfully added the following checklist item"
+    />;
+    
+  }
+
   return (
     <Modal
+      size="small"
       dimmer="blurring"
       onClose={() => setModalState(false)}
       onOpen={() => setModalState(true)}
@@ -35,19 +49,21 @@ function NewItemForm({ modalState, setModalState }) {
     >
       <Modal.Header>{`Add new checklist item for ${ac}`} </Modal.Header>
       <Modal.Content>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Field
             required
             control={Select}
             label="Phase of flight"
             options={phaseOptions}
             placeholder="Phase"
+            onChange={e => setPhase(e.target.innerText)}
           />
           <Form.Field
             required
             control={Input}
-            label='Description ("call")'
+            label='Description ("Call")'
             placeholder="Fuel Quantity"
+            onChange={e => setCall(e.target.value)}
           />
           <Form.Field
             required
@@ -55,6 +71,7 @@ function NewItemForm({ modalState, setModalState }) {
             label="Response"
             options={responseOptions}
             placeholder="Response"
+            onChange={e => setResponse(e.target.innerText)}
           />
           <Button type="submit">Submit</Button>
         </Form>
