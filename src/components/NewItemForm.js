@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Input, Modal, Select } from "semantic-ui-react";
+import { AcContext } from "../context/ac";
 
 function NewItemForm() {
   const [modalState, setModalState] = useState(true);
+
+  const { ac } = useContext(AcContext);
 
   const phaseOptions = [
     { key: "preflight", text: "Preflight", value: "preflight" },
@@ -32,7 +35,7 @@ function NewItemForm() {
       onOpen={() => setModalState(true)}
       open={modalState}
     >
-      <Modal.Header>Add new checklist item</Modal.Header>
+      <Modal.Header>{`Add new checklist item for ${ac}`} </Modal.Header>
       <Modal.Content>
         <Form>
           <Form.Field
