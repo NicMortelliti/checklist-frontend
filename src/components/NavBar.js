@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Icon, Menu } from "semantic-ui-react";
+import { Dropdown, Icon, Menu } from "semantic-ui-react";
 import { AcContext } from "../context/ac";
 
 function NavBar({ activePhase, setActivePhase, setModalState }) {
@@ -14,18 +14,12 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
     </Menu.Item>
   );
 
-  // Create menu item for aircraft tail number
-  const acTailMenuItem = <Menu.Item header>{ac}</Menu.Item>;
-
   // Create menu item for each phase
   const menuItem = label => {
     return (
-      <Menu.Item
-        key={label}
-        name={label}
-        active={activePhase === label}
-        onClick={() => setActivePhase(label)}
-      />
+      <Dropdown.Item key={label} onClick={() => setActivePhase(label)}>
+        {label}
+      </Dropdown.Item>
     );
   };
 
@@ -40,12 +34,14 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
   );
 
   return (
-    <Menu tabular attached="top">
+    <Menu size="tiny">
       {backMenuItem}
-      {acTailMenuItem}
-      {phases.map(phase => {
-        return menuItem(phase);
-      })}
+      <Menu.Item header>{ac}</Menu.Item>
+      <Menu.Menu position="right">
+        <Dropdown item text={activePhase}>
+          <Dropdown.Menu>{phases.map(phase => menuItem(phase))};</Dropdown.Menu>
+        </Dropdown>
+      </Menu.Menu>
       {addMenuItem}
     </Menu>
   );
