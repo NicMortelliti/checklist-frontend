@@ -36,7 +36,7 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
   return (
     <Menu size="tiny">
       {backMenuItem}
-      <Menu.Item header>{ac}</Menu.Item>
+      <Menu.Item header>{ac ? ac : "Choose an aircraft..."}</Menu.Item>
       <Menu.Menu position="right">
         <Dropdown item text={activePhase}>
           <Dropdown.Menu>{phases.map(phase => menuItem(phase))};</Dropdown.Menu>
