@@ -7,6 +7,16 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
 
   const phases = ["Preflight", "Taxi", "Takeoff", "Cruise", "Landing"];
 
+  // Create menu item for Back button
+  const backMenuItem = (
+    <Menu.Item onClick={() => setAc("")}>
+      <Icon name="chevron left" />
+    </Menu.Item>
+  );
+
+  // Create menu item for aircraft tail number
+  const acTailMenuItem = <Menu.Item header>{ac}</Menu.Item>;
+
   // Create menu item for each phase
   const menuItem = label => {
     return (
@@ -19,23 +29,24 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
     );
   };
 
+  // Create menu item for Add checklist item
+  const addMenuItem = (
+    <Menu.Item
+      disabled={ac === ""}
+      onClick={() => setModalState(true)}
+      position="right"
+      name="Add"
+    />
+  );
+
   return (
     <Menu tabular attached="top">
-      {/* Back button */}
-      <Menu.Item onClick={() => setAc("")}>
-        <Icon name="chevron left" />
-      </Menu.Item>
-      <Menu.Item header>{ac}</Menu.Item>
+      {backMenuItem}
+      {acTailMenuItem}
       {phases.map(phase => {
         return menuItem(phase);
       })}
-      <Menu.Item
-        disabled={ac === ""}
-        onClick={() => setModalState(true)}
-        position="right"
-        name="Add"
-      />
-      ;
+      {addMenuItem}
     </Menu>
   );
 }
