@@ -41,7 +41,13 @@ function App() {
             checklistItems={rawDataArray}
             activePhase={activePhase}
           />
-          <NewItemForm modalState={modalState} setModalState={setModalState} url={URL} />
+          <NewItemForm
+            modalState={modalState}
+            setModalState={setModalState}
+            url={URL}
+            acArray={acArray}
+            setAcArray={setAcArray}
+          />
         </AcProvider>
       </div>
     </Container>

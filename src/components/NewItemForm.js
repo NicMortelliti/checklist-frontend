@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import { Button, Form, Input, Message, Modal, Select } from "semantic-ui-react";
+import { Button, Form, Input, Modal, Select } from "semantic-ui-react";
 import { AcContext } from "../context/ac";
 
-function NewItemForm({ modalState, setModalState, url }) {
+function NewItemForm({ modalState, setModalState, url, acArray, setAcArray }) {
   const { ac } = useContext(AcContext);
   const [phase, setPhase] = useState("");
   const [call, setCall] = useState("");
@@ -31,12 +31,21 @@ function NewItemForm({ modalState, setModalState, url }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(phase, call, response);
-    <Message
-      success
-      header="Successfully added the following checklist item"
-    />;
-    
+    const itemData = {
+      tail: ac,
+      phase: phase,
+      description: call,
+      response: response,
+    };
+    fetch(`${url}/checklist`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(itemData),
+    })
+      .then(r => r.json())
+      .then(newItem => setAcArray([...acArray, newItem]));
   }
 
   return (
