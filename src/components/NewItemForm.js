@@ -71,7 +71,7 @@ function NewItemForm({ modalState, setModalState, url, acArray, setAcArray }) {
             required
             control={Input}
             label='Description ("Call")'
-            placeholder="Fuel Quantity"
+            placeholder="e.g. Fuel Quantity"
             onChange={e => setCall(e.target.value)}
           />
           <Form.Field
