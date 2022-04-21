@@ -7,6 +7,18 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
 
   const phases = ["Preflight", "Taxi", "Takeoff", "Cruise", "Landing"];
 
+  // Create menu item for each phase
+  const menuItem = label => {
+    return (
+      <Menu.Item
+        key={label}
+        name={label}
+        active={activePhase === label}
+        onClick={() => setActivePhase(label)}
+      />
+    );
+  };
+
   return (
     <Menu tabular attached="top">
       {/* Back button */}
@@ -15,14 +27,7 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
       </Menu.Item>
       <Menu.Item header>{ac}</Menu.Item>
       {phases.map(phase => {
-        return (
-          <Menu.Item
-            key={phase}
-            name={phase}
-            active={activePhase === phase}
-            onClick={() => setActivePhase(phase)}
-          />
-        );
+        return menuItem(phase);
       })}
       <Menu.Item
         disabled={ac === ""}
