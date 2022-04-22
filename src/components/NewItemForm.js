@@ -49,13 +49,7 @@ function NewItemForm({ modalState, setModalState, url, acArray, setAcArray }) {
   }
 
   return (
-    <Modal
-      size="small"
-      dimmer="blurring"
-      onClose={() => setModalState(false)}
-      onOpen={() => setModalState(true)}
-      open={modalState}
-    >
+    <Modal size="small" dimmer="blurring" open={modalState}>
       <Modal.Header>{`Add new checklist item for ${ac}`} </Modal.Header>
       <Modal.Content>
         <Form onSubmit={handleSubmit}>
