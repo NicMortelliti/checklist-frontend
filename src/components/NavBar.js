@@ -34,7 +34,7 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
   );
 
   return (
-    <Menu size="tiny">
+    <Menu size="tiny" attached="top">
       {ac ? backMenuItem : null}
       {ac ? <Menu.Item header>{ac}</Menu.Item> : null}
       <Menu.Menu position="right">
