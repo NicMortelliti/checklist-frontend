@@ -35,14 +35,14 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
 
   return (
     <Menu size="tiny">
-      {ac ? { backMenuItem } : null}
+      {ac ? backMenuItem : null}
       {ac ? <Menu.Item header>{ac}</Menu.Item> : null}
       <Menu.Menu position="right">
         <Dropdown item text={activePhase}>
           <Dropdown.Menu>{phases.map(phase => menuItem(phase))};</Dropdown.Menu>
         </Dropdown>
       </Menu.Menu>
-      {ac ? { addMenuItem } : null}
+      {ac ? addMenuItem : null}
     </Menu>
   );
 }
