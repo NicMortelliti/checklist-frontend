@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import ItemList from "./ItemList";
 import NewItemForm from "./NewItemForm";
-import { Container } from "semantic-ui-react";
+import { Button, Container, Modal } from "semantic-ui-react";
 import { AcProvider } from "../context/ac";
+import AcListModal from "./AcListModal";
 
 const URL = "http://localhost:3000";
 
@@ -53,6 +54,7 @@ function App() {
             acArray={acArray}
             setAcArray={setAcArray}
           />
+          <AcListModal acArray={acArray} />
         </AcProvider>
       </div>
     </Container>
