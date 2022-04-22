@@ -11,9 +11,7 @@ function ItemList({ acArray, checklistItems, activePhase }) {
       {
         // If CurrentAC is not blank, list checklist items for selected aircraft
         ac === ""
-          ? acArray.map(aircraft => (
-              <AcItem key={aircraft.id} itemData={aircraft} />
-            ))
+          ? null
           : checklistItems.map(item =>
               ac === item.tail ? (
                 activePhase === item.phase ? (
