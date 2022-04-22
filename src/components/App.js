@@ -11,7 +11,7 @@ function App() {
   // Set up states
   const [rawDataArray, setRawDataArray] = useState([]);
   const [acArray, setAcArray] = useState([]);
-  const [activePhase, setActivePhase] = useState("");
+  const [activePhase, setActivePhase] = useState("Preflight");
   const [modalState, setModalState] = useState(false);
 
   // Fetch GET checklist data
