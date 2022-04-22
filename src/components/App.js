@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import ItemList from "./ItemList";
 import NewItemForm from "./NewItemForm";
-import { Button, Container, Modal } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import { AcProvider } from "../context/ac";
 import AcListModal from "./AcListModal";
 
