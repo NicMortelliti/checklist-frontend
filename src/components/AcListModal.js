@@ -7,7 +7,7 @@ function AcListModal({ acArray }) {
   const { ac } = useContext(AcContext);
 
   return (
-    <Modal open={!ac} scrolling={true}>
+    <Modal open={!ac} scrolling="true">
       <Modal.Header>Select an aircraft</Modal.Header>
       <Modal.Content>
         {acArray.map(aircraft => (
