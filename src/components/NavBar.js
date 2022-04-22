@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Dropdown, Icon, Menu } from "semantic-ui-react";
+import { Dropdown, Icon, Menu, Sticky } from "semantic-ui-react";
 import { AcContext } from "../context/ac";
 
 function NavBar({ activePhase, setActivePhase, setModalState }) {
@@ -35,15 +35,19 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
   );
 
   return (
-    <Menu size="tiny" attached="top">
-      {ac ? backMenuItem : null}
-      <Menu.Menu position="right">
-        <Dropdown item text={activePhase}>
-          <Dropdown.Menu>{phases.map(phase => menuItem(phase))};</Dropdown.Menu>
-        </Dropdown>
-      </Menu.Menu>
-      {ac ? addMenuItem : null}
-    </Menu>
+    <Sticky>
+      <Menu size="tiny" attached="top">
+        {ac ? backMenuItem : null}
+        <Menu.Menu position="right">
+          <Dropdown item text={activePhase}>
+            <Dropdown.Menu>
+              {phases.map(phase => menuItem(phase))};
+            </Dropdown.Menu>
+          </Dropdown>
+        </Menu.Menu>
+        {ac ? addMenuItem : null}
+      </Menu>
+    </Sticky>
   );
 }
 export default NavBar;
