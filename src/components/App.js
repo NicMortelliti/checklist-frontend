@@ -18,7 +18,12 @@ function App() {
   useEffect(() => {
     fetch(`${URL}/checklist`)
       .then(r => r.json())
-      .then(data => setRawDataArray(data));
+      .then(data => {
+        data.map(eachItem => {
+          return (eachItem.checked = false);
+        });
+        setRawDataArray(data);
+      });
   }, []);
 
   useEffect(() => {
