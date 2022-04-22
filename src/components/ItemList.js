@@ -3,7 +3,7 @@ import Item from "./Item";
 import { AcContext } from "../context/ac";
 import { Segment } from "semantic-ui-react";
 
-function ItemList({ acArray, checklistItems, activePhase }) {
+function ItemList({ checklistItems, activePhase }) {
   const { ac } = useContext(AcContext);
   return (
     <Segment attached="bottom">
