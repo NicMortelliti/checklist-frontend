@@ -35,14 +35,14 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
 
   return (
     <Menu size="tiny">
-      {backMenuItem}
-      <Menu.Item header>{ac ? ac : "Choose an aircraft..."}</Menu.Item>
+      {ac ? { backMenuItem } : null}
+      {ac ? <Menu.Item header>{ac}</Menu.Item> : null}
       <Menu.Menu position="right">
         <Dropdown item text={activePhase}>
           <Dropdown.Menu>{phases.map(phase => menuItem(phase))};</Dropdown.Menu>
         </Dropdown>
       </Menu.Menu>
-      {addMenuItem}
+      {ac ? { addMenuItem } : null}
     </Menu>
   );
 }
