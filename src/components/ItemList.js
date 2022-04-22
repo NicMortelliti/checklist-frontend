@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import Item from "./Item";
-import AcItem from "./AcItem";
 import { AcContext } from "../context/ac";
 import { Segment } from "semantic-ui-react";
 
