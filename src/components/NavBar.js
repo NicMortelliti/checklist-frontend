@@ -9,8 +9,9 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
 
   // Create menu item for Back button
   const backMenuItem = (
-    <Menu.Item onClick={() => setAc("")}>
+    <Menu.Item onClick={() => setAc("")} header>
       <Icon name="chevron left" />
+      {ac}
     </Menu.Item>
   );
 
@@ -36,7 +37,6 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
   return (
     <Menu size="tiny" attached="top">
       {ac ? backMenuItem : null}
-      {ac ? <Menu.Item header>{ac}</Menu.Item> : null}
       <Menu.Menu position="right">
         <Dropdown item text={activePhase}>
           <Dropdown.Menu>{phases.map(phase => menuItem(phase))};</Dropdown.Menu>
