@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Item from "./Item";
 import AcItem from "./AcItem";
 import { AcContext } from "../context/ac";
-import { Message, Segment, Transition } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 
 function ItemList({ acArray, checklistItems, activePhase }) {
   const { ac } = useContext(AcContext);
