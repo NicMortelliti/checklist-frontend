@@ -1,21 +1,24 @@
 import React, { useState } from "react";
-import { Segment, Button } from "semantic-ui-react";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+} from "@mui/material";
 
 function Item({ itemData: { id, tail, phase, description, response } }) {
   const [checkedState, setCheckedState] = useState(false);
 
   return (
-    <>
-      <Segment attached="top">{description}</Segment>
-      <Button
-        toggle
-        attached="bottom"
-        active={checkedState}
-        content={checkedState ? null : response}
-        icon={checkedState ? "check" : null}
-        onClick={() => setCheckedState(!checkedState)}
-      />
-    </>
+    <Card sx={{ minWidth: 275 }}>
+      <CardContent>
+        <Typography variant="body2">{description}</Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">{response}</Button>
+      </CardActions>
+    </Card>
   );
 }
 

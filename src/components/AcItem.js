@@ -1,17 +1,26 @@
 import React, { useContext } from "react";
-import { Card, Image } from "semantic-ui-react";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { AcContext } from "../context/ac";
 
 function AcItem({ itemData }) {
   const { setAc } = useContext(AcContext);
 
   return (
-    <Card fluid onClick={() => setAc(itemData.tail)}>
-      <Image src={itemData.image} wrapped ui={false} />
-      <Card.Content>
-        <Card.Header>{itemData.tail}</Card.Header>
-        <Card.Description>{itemData.model}</Card.Description>
-      </Card.Content>
+    <Card sx={{ maxWidth: 345 }} onClick={() => setAc(itemData.tail)}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={itemData.image}
+        alt={itemData.tail}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {itemData.tail}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {itemData.model}
+        </Typography>
+      </CardContent>
     </Card>
   );
 }

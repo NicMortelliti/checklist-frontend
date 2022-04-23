@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import ItemList from "./ItemList";
-import NewItemForm from "./NewItemForm";
-import { Container } from "semantic-ui-react";
-import { AcProvider } from "../context/ac";
+// import NewItemForm from "./NewItemForm";
 import AcListModal from "./AcListModal";
+import { AcProvider } from "../context/ac";
+import { PhaseProvider } from "../context/phase";
 
 const URL = "http://localhost:3000";
 
@@ -34,9 +34,9 @@ function App() {
   }, []);
 
   return (
-    <Container style={{ margin: 20 }}>
-      <div className="App">
-        <AcProvider>
+    <div className="App">
+      <AcProvider>
+        <PhaseProvider>
           <NavBar
             activePhase={activePhase}
             setActivePhase={setActivePhase}
@@ -47,17 +47,17 @@ function App() {
             checklistItems={rawDataArray}
             activePhase={activePhase}
           />
-          <NewItemForm
+          {/*<NewItemForm
             modalState={modalState}
             setModalState={setModalState}
             url={URL}
             acArray={acArray}
             setAcArray={setAcArray}
-          />
+          /> */}
           <AcListModal acArray={acArray} />
-        </AcProvider>
-      </div>
-    </Container>
+        </PhaseProvider>
+      </AcProvider>
+    </div>
   );
 }
 
