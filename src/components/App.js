@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import ItemList from "./ItemList";
 // import NewItemForm from "./NewItemForm";
 import AcListModal from "./AcListModal";
-import { AcProvider } from "../context/ac";
+import { AcContext, AcProvider } from "../context/ac";
 import { PhaseProvider } from "../context/phase";
 
 const URL = "http://localhost:3000";
@@ -14,6 +14,7 @@ function App() {
   const [acArray, setAcArray] = useState([]);
   const [activePhase, setActivePhase] = useState("Preflight");
   const [modalState, setModalState] = useState(false);
+  // const { ac } = useContext(AcContext);
 
   // Fetch GET checklist data
   useEffect(() => {

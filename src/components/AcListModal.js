@@ -11,9 +11,8 @@ function AcListModal({ acArray }) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
 
-  return (
+  return !ac ? (
     <Dialog
-      fullScreen
       open={!ac}
       // onClose={handleClose}
       TransitionComponent={Transition}
@@ -27,7 +26,7 @@ function AcListModal({ acArray }) {
         ))}
       </Stack>
     </Dialog>
-  );
+  ) : null;
 }
 
 export default AcListModal;
