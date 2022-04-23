@@ -9,7 +9,7 @@ function AcItem({ itemData }) {
     <Card sx={{ maxWidth: 345 }} onClick={() => setAc(itemData.tail)}>
       <CardMedia
         component="img"
-        height="140"
+        height="250"
         image={itemData.image}
         alt={itemData.tail}
       />
