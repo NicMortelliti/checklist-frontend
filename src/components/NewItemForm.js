@@ -58,14 +58,6 @@ function NewItemForm({
         {/* <Form onSubmit={handleSubmit}>
           <Form.Field
             required
-            control={Select}
-            label="Phase of flight"
-            options={phaseOptions}
-            placeholder="Phase"
-            onChange={e => setPhase(e.target.innerText)}
-          />
-          <Form.Field
-            required
             control={Input}
             label='Description ("Call")'
             placeholder="e.g. Fuel Quantity"
