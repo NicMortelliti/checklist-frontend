@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Item from "./Item";
-import EmergencyBtn from "./EmergencyBtn";
-//import NewItemForm from "./NewItemForm";
 
 import { AcContext } from "../context/ac";
 import { Stack, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
-function ItemList({ checklistItems, activePhase }) {
+function ItemList({ checklistItems, activePhase, setDialogState }) {
   const { ac } = useContext(AcContext);
+
   return (
     <>
       <Stack alignItems="center" spacing={2}>
@@ -29,10 +28,10 @@ function ItemList({ checklistItems, activePhase }) {
         color="primary"
         aria-label="add"
         sx={{ position: "fixed", bottom: 16, right: 16 }}
+        onClick={() => setDialogState(true)}
       >
         <AddIcon />
       </Fab>
-      <EmergencyBtn />
     </>
   );
 }
