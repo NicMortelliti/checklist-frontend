@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Card, CardContent, Icon, Typography } from "@mui/material";
+import { Button, Card, CardContent, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 
 function Item({ itemData: { id, tail, phase, description, response } }) {

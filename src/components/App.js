@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import ItemList from "./ItemList";
 // import NewItemForm from "./NewItemForm";
 import AcListModal from "./AcListModal";
-import { AcContext, AcProvider } from "../context/ac";
+import { AcProvider } from "../context/ac";
 import { PhaseProvider } from "../context/phase";
 
 const URL = "http://localhost:3000";
@@ -13,7 +13,6 @@ function App() {
   const [rawDataArray, setRawDataArray] = useState([]);
   const [acArray, setAcArray] = useState([]);
   const [activePhase, setActivePhase] = useState("Preflight");
-  const [modalState, setModalState] = useState(false);
   // const { ac } = useContext(AcContext);
 
   // Fetch GET checklist data
@@ -38,11 +37,7 @@ function App() {
     <div className="App">
       <AcProvider>
         <PhaseProvider>
-          <NavBar
-            activePhase={activePhase}
-            setActivePhase={setActivePhase}
-            setModalState={setModalState}
-          />
+          <NavBar activePhase={activePhase} setActivePhase={setActivePhase} />
           <ItemList
             acArray={acArray}
             checklistItems={rawDataArray}
