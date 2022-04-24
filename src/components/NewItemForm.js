@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -8,6 +9,7 @@ import {
 } from "@mui/material";
 import { AcContext } from "../context/ac";
 import NewItemPhase from "./NewItemPhase";
+import NewItemResponse from "./NewItemResponse";
 
 function NewItemForm({
   dialogState,
@@ -20,19 +22,6 @@ function NewItemForm({
   const [phase, setPhase] = useState("");
   const [call, setCall] = useState("");
   const [response, setResponse] = useState("");
-
-  const responseOptions = [
-    { key: "accessible", text: "ACCESSIBLE", value: "accessible" },
-    { key: "check", text: "CHECK", value: "check" },
-    { key: "complete", text: "COMPLETE", value: "complete" },
-    { key: "extend", text: "EXTEND", value: "extend" },
-    { key: "latched", text: "LATCHED", value: "latched" },
-    { key: "off", text: "OFF", value: "off" },
-    { key: "on", text: "ON", value: "on" },
-    { key: "present", text: "PRESENT", value: "present" },
-    { key: "retract", text: "RETRACT", value: "retract" },
-    { key: "set", text: "SET", value: "set" },
-  ];
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -60,6 +49,10 @@ function NewItemForm({
         <FormControl required>
           <FormGroup>
             <NewItemPhase phase={phase} setPhase={setPhase} />
+            <NewItemResponse response={response} setResponse={setResponse} />
+            <Button variant="contained" color="primary" type="submit">
+              Submit
+            </Button>
           </FormGroup>
         </FormControl>
         {/* <Form onSubmit={handleSubmit}>
@@ -78,15 +71,6 @@ function NewItemForm({
             placeholder="e.g. Fuel Quantity"
             onChange={e => setCall(e.target.value)}
           />
-          <Form.Field
-            required
-            control={Select}
-            label="Response"
-            options={responseOptions}
-            placeholder="Response"
-            onChange={e => setResponse(e.target.innerText)}
-          />
-          <Button type="submit">Submit</Button>
         </Form> */}
       </DialogContent>
     </Dialog>
