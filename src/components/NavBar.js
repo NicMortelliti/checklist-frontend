@@ -1,43 +1,11 @@
 import React, { useContext } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import { AppBar, Box, Toolbar, Typography, IconButton } from "@mui/material/";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { AcContext } from "../context/ac";
 import PhaseSelect from "./PhaseSelect";
 
 function NavBar({ activePhase, setActivePhase, setModalState }) {
-  const { ac } = useContext(AcContext);
-
-  // Create menu item for Back button
-  // const backMenuItem = (
-  //   <Menu.Item onClick={() => setAc("")} header>
-  //     <Icon name="chevron left" />
-  //     {ac}
-  //   </Menu.Item>
-  // );
-
-  // Create menu item for each phase
-  // const menuItem = label => {
-  //   return (
-  //     <MenuItem key={label} onClick={() => setActivePhase(label)}>
-  //       {label}
-  //     </MenuItem>
-  //   );
-  // };
-
-  // Create menu item for Add checklist item
-  // const addMenuItem = (
-  //   <Menu.Item
-  //     disabled={ac === ""}
-  //     onClick={() => setModalState(true)}
-  //     position="right"
-  //     name="Add"
-  //   />
-  // );
+  const { ac, setAc } = useContext(AcContext);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -49,6 +17,7 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
             color="inherit"
             aria-label="back"
             sx={{ mr: 2 }}
+            onClick={() => setAc("")}
           >
             <ChevronLeftIcon />
           </IconButton>
@@ -59,15 +28,6 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
         </Toolbar>
       </AppBar>
     </Box>
-    // <Menu size="tiny" attached="top">
-    //   {ac ? backMenuItem : null}
-    //   <Menu.Menu position="right">
-    //     <Select item text={activePhase}>
-    //       <Select.Menu>{phases.map(phase => menuItem(phase))};</Select.Menu>
-    //     </Select>
-    //   </Menu.Menu>
-    //   {ac ? addMenuItem : null}
-    // </Menu>
   );
 }
 export default NavBar;
