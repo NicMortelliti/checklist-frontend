@@ -8,7 +8,7 @@ function NavBar({ activePhase, setActivePhase, setModalState }) {
   const { ac, setAc } = useContext(AcContext);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ position: "fixed", top: 0, left: 0, right: 0, flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
