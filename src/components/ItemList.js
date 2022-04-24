@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import Item from "./Item";
+import EmergencyBtn from "./EmergencyBtn";
 //import NewItemForm from "./NewItemForm";
 
 import { AcContext } from "../context/ac";
@@ -31,6 +32,7 @@ function ItemList({ checklistItems, activePhase }) {
       >
         <AddIcon />
       </Fab>
+      <EmergencyBtn />
     </>
   );
 }
