@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import ItemList from "./ItemList";
-// import NewItemForm from "./NewItemForm";
+import EmergencyBtn from "./EmergencyBtn";
+import NewItemForm from "./NewItemForm";
 import AcListModal from "./AcListModal";
-import { AcProvider } from "../context/ac";
+import { AcContext } from "../context/ac";
 import { PhaseProvider } from "../context/phase";
 
 const URL = "http://localhost:3000";
@@ -13,7 +14,8 @@ function App() {
   const [rawDataArray, setRawDataArray] = useState([]);
   const [acArray, setAcArray] = useState([]);
   const [activePhase, setActivePhase] = useState("Preflight");
-  // const { ac } = useContext(AcContext);
+  const [dialogState, setDialogState] = useState(false);
+  const { ac } = useContext(AcContext);
 
   // Fetch GET checklist data
   useEffect(() => {
@@ -35,24 +37,28 @@ function App() {
 
   return (
     <div className="App">
-      <AcProvider>
-        <PhaseProvider>
-          <NavBar activePhase={activePhase} setActivePhase={setActivePhase} />
-          <ItemList
-            acArray={acArray}
-            checklistItems={rawDataArray}
-            activePhase={activePhase}
-          />
-          {/*<NewItemForm
-            modalState={modalState}
-            setModalState={setModalState}
-            url={URL}
-            acArray={acArray}
-            setAcArray={setAcArray}
-          /> */}
-          <AcListModal acArray={acArray} />
-        </PhaseProvider>
-      </AcProvider>
+      <PhaseProvider>
+        <NavBar />
+        <ItemList
+          acArray={acArray}
+          checklistItems={rawDataArray}
+          activePhase={activePhase}
+          setDialogState={setDialogState}
+        />
+        {ac ? (
+          <>
+            <NewItemForm
+              dialogState={dialogState}
+              setDialogState={setDialogState}
+              url={URL}
+              acArray={acArray}
+              setAcArray={setAcArray}
+            />
+            <EmergencyBtn />
+          </>
+        ) : null}
+        <AcListModal acArray={acArray} />
+      </PhaseProvider>
     </div>
   );
 }

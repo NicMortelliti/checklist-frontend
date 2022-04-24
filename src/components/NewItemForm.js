@@ -1,8 +1,22 @@
 import React, { useContext, useState } from "react";
-import { Button, Form, Input, Modal, Select } from "semantic-ui-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  FormControl,
+  FormGroup,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import { AcContext } from "../context/ac";
 
-function NewItemForm({ modalState, setModalState, url, acArray, setAcArray }) {
+function NewItemForm({
+  dialogState,
+  setDialogState,
+  url,
+  acArray,
+  setAcArray,
+}) {
   const { ac } = useContext(AcContext);
   const [phase, setPhase] = useState("");
   const [call, setCall] = useState("");
@@ -49,10 +63,25 @@ function NewItemForm({ modalState, setModalState, url, acArray, setAcArray }) {
   }
 
   return (
-    <Modal size="small" dimmer="blurring" open={modalState}>
-      <Modal.Header>{`Add new checklist item for ${ac}`} </Modal.Header>
-      <Modal.Content>
-        <Form onSubmit={handleSubmit}>
+    <Dialog open={dialogState}>
+      <DialogTitle>{`Add new checklist item for ${ac}`} </DialogTitle>
+      <DialogContent>
+        <FormControl required>
+          <FormGroup>
+            <Select
+              labelId="phase-select"
+              id="phase-select"
+              value="testing..."
+              label="Phase of flight *"
+              onChange={e => setPhase(e.target.innerText)}
+            >
+              {phaseOptions.map(phase => (
+                <MenuItem value={phase}>{phase}</MenuItem>
+              ))}
+            </Select>
+          </FormGroup>
+        </FormControl>
+        {/* <Form onSubmit={handleSubmit}>
           <Form.Field
             required
             control={Select}
@@ -77,9 +106,9 @@ function NewItemForm({ modalState, setModalState, url, acArray, setAcArray }) {
             onChange={e => setResponse(e.target.innerText)}
           />
           <Button type="submit">Submit</Button>
-        </Form>
-      </Modal.Content>
-    </Modal>
+        </Form> */}
+      </DialogContent>
+    </Dialog>
   );
 }
 
