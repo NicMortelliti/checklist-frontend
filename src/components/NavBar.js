@@ -4,7 +4,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { AcContext } from "../context/ac";
 import PhaseSelect from "./PhaseSelect";
 
-function NavBar({ activePhase, setActivePhase, setModalState }) {
+function NavBar() {
   const { ac, setAc } = useContext(AcContext);
 
   return (
