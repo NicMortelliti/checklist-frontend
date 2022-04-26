@@ -22,7 +22,9 @@ function NewItemPhase({ phase, setPhase }) {
         onChange={e => setPhase(e.target.value)}
       >
         {phaseOptions.map(phase => (
-          <MenuItem value={phase.key}>{phase.text}</MenuItem>
+          <MenuItem key={phase.key} value={phase.key}>
+            {phase.text}
+          </MenuItem>
         ))}
       </Select>
     </FormControl>
