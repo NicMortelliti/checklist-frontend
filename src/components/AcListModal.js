@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import AcItem from "./AcItem";
 import { AcContext } from "../context/ac";
-import { Dialog, Slide, Stack, Typography } from "@mui/material";
+import { Dialog, DialogTitle, Slide, Stack } from "@mui/material";
 
 function AcListModal({ acArray }) {
   const { ac } = useContext(AcContext);
@@ -12,15 +12,9 @@ function AcListModal({ acArray }) {
   });
 
   return !ac ? (
-    <Dialog
-      open={!ac}
-      // onClose={handleClose}
-      TransitionComponent={Transition}
-    >
-      <Typography sx={{ m1: 2, flex: 1 }} variant="h6" component="div">
-        Select an aircraft
-      </Typography>
-      <Stack alignItems="center" spacing={2}>
+    <Dialog open={!ac} TransitionComponent={Transition}>
+      <DialogTitle>Select an aircraft</DialogTitle>
+      <Stack alignItems="center">
         {acArray.map(aircraft => (
           <AcItem key={aircraft.id} itemData={aircraft} />
         ))}
