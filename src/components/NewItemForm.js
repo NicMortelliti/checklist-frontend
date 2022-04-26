@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { AcContext } from "../context/ac";
 import NewItemPhase from "./NewItemPhase";
+import NewItemDescription from "./NewItemDescription";
 import NewItemResponse from "./NewItemResponse";
 
 function NewItemForm({
@@ -49,6 +50,7 @@ function NewItemForm({
         <FormControl required>
           <FormGroup>
             <NewItemPhase phase={phase} setPhase={setPhase} />
+            <NewItemDescription call={call} setCall={setCall} />
             <NewItemResponse response={response} setResponse={setResponse} />
             <Button variant="contained" color="primary" type="submit">
               Submit
