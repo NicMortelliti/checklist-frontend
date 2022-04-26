@@ -48,7 +48,7 @@ function NewItemForm({
       <DialogTitle>{`Add new checklist item for ${ac}`} </DialogTitle>
       <DialogContent>
         <FormControl required>
-          <FormGroup>
+          <FormGroup onSubmit={e => handleSubmit(e)}>
             <NewItemPhase phase={phase} setPhase={setPhase} />
             <NewItemDescription call={call} setCall={setCall} />
             <NewItemResponse response={response} setResponse={setResponse} />
@@ -57,15 +57,6 @@ function NewItemForm({
             </Button>
           </FormGroup>
         </FormControl>
-        {/* <Form onSubmit={handleSubmit}>
-          <Form.Field
-            required
-            control={Input}
-            label='Description ("Call")'
-            placeholder="e.g. Fuel Quantity"
-            onChange={e => setCall(e.target.value)}
-          />
-        </Form> */}
       </DialogContent>
     </Dialog>
   );
