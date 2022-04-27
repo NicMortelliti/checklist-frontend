@@ -4,6 +4,7 @@ import ItemList from "./ItemList";
 import EmergencyBtn from "./EmergencyBtn";
 import NewItemForm from "./NewItemForm";
 import AcListModal from "./AcListModal";
+import { Box } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseProvider } from "../context/phase";
 
@@ -38,26 +39,37 @@ function App() {
   return (
     <div className="App">
       <PhaseProvider>
-        <NavBar />
-        <ItemList
-          acArray={acArray}
-          checklistItems={rawDataArray}
-          activePhase={activePhase}
-          setDialogState={setDialogState}
-        />
-        {ac ? (
-          <>
-            <NewItemForm
-              dialogState={dialogState}
-              setDialogState={setDialogState}
-              url={URL}
+        <Box sx={{ display: "flex" }}>
+          <NavBar />
+          <Box
+            component="main"
+            sx={{
+              flexGrow: 1,
+              height: "100vh",
+              overflow: "auto",
+            }}
+          >
+            <ItemList
               acArray={acArray}
-              setAcArray={setAcArray}
+              checklistItems={rawDataArray}
+              activePhase={activePhase}
+              setDialogState={setDialogState}
             />
-            <EmergencyBtn />
-          </>
-        ) : null}
-        <AcListModal acArray={acArray} />
+          </Box>
+          {ac ? (
+            <>
+              <NewItemForm
+                dialogState={dialogState}
+                setDialogState={setDialogState}
+                url={URL}
+                acArray={acArray}
+                setAcArray={setAcArray}
+              />
+              <EmergencyBtn />
+            </>
+          ) : null}
+          <AcListModal acArray={acArray} />
+        </Box>
       </PhaseProvider>
     </div>
   );

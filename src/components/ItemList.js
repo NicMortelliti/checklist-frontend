@@ -2,14 +2,14 @@ import React, { useContext, useState } from "react";
 import Item from "./Item";
 
 import { AcContext } from "../context/ac";
-import { Stack, Fab } from "@mui/material";
+import { Box, Stack, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 function ItemList({ checklistItems, activePhase, setDialogState }) {
   const { ac } = useContext(AcContext);
 
   return (
-    <>
+    <Box>
       <Stack alignItems="center" spacing={2}>
         {
           // If CurrentAC is not blank, list checklist items for selected aircraft
@@ -32,7 +32,7 @@ function ItemList({ checklistItems, activePhase, setDialogState }) {
       >
         <AddIcon />
       </Fab>
-    </>
+    </Box>
   );
 }
 
