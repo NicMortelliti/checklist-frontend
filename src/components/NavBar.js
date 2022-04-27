@@ -8,8 +8,8 @@ function NavBar() {
   const { ac, setAc } = useContext(AcContext);
 
   return (
-    <Box sx={{ position: "fixed", top: 0, left: 0, right: 0, flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ display: "flex" }}>
+      <AppBar position="fixed" open="true">
         <Toolbar>
           <IconButton
             size="large"
