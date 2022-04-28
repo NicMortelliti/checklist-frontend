@@ -26,7 +26,9 @@ function NewItemResponse({ response, setResponse }) {
         onChange={e => setResponse(e.target.value)}
       >
         {responseOptions.map(response => (
-          <MenuItem value={response.key}>{response.text}</MenuItem>
+          <MenuItem key={response.key} value={response.key}>
+            {response.text}
+          </MenuItem>
         ))}
       </Select>
     </FormControl>
