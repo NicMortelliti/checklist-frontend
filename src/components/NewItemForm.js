@@ -40,23 +40,30 @@ function NewItemForm({
       body: JSON.stringify(itemData),
     })
       .then(r => r.json())
-      .then(newItem => setAcArray([...acArray, newItem]));
+      .then(r => console.log("Success:", JSON.stringify(r)))
+      .then(newItem => setAcArray([...acArray, newItem]))
+      .then(setDialogState);
   }
 
   return (
     <Dialog open={dialogState}>
       <DialogTitle>{`Add new checklist item for ${ac}`} </DialogTitle>
       <DialogContent>
-        <FormControl required>
-          <FormGroup onSubmit={e => handleSubmit(e)}>
+        <FormGroup>
+          <FormControl required>
             <NewItemPhase phase={phase} setPhase={setPhase} />
             <NewItemDescription call={call} setCall={setCall} />
             <NewItemResponse response={response} setResponse={setResponse} />
-            <Button variant="contained" color="primary" type="submit">
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              onClick={e => handleSubmit(e)}
+            >
               Submit
             </Button>
-          </FormGroup>
-        </FormControl>
+          </FormControl>
+        </FormGroup>
       </DialogContent>
     </Dialog>
   );
