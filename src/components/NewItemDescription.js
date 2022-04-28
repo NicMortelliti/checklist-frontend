@@ -7,6 +7,7 @@ function NewItemDescription({ call, setCall }) {
       id="description-text"
       label="Call"
       variant="standard"
+      value={call}
       onChange={e => setCall(e.target.value)}
     />
   );
