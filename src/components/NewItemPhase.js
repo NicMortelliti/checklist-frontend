@@ -9,6 +9,7 @@ function NewItemPhase({ phase, setPhase }) {
     { key: "takeoff", text: "Takeoff", value: "takeoff" },
     { key: "cruise", text: "Cruise", value: "cruise" },
     { key: "landing", text: "Landing", value: "landing" },
+    { key: "emergency", text: "Emergency", value: "landing" },
   ];
 
   return (
