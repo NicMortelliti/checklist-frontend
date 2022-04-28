@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Button, Card, CardContent, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+} from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 
 function Item({ itemData: { id, tail, phase, description, response } }) {
@@ -10,18 +16,20 @@ function Item({ itemData: { id, tail, phase, description, response } }) {
   };
 
   return (
-    <Card sx={{ minWidth: 300 }}>
+    <Card raised sx={{ minWidth: 380 }}>
       <CardContent>
-        <Typography variant="body2">{description}</Typography>
+        <Typography variant="h6">{description}</Typography>
       </CardContent>
-      <Button
-        sx={{ width: 1 }}
-        variant={checkedState ? "contained" : "outlined"}
-        color="success"
-        onClick={handleClick}
-      >
-        {checkedState ? <CheckIcon /> : response}
-      </Button>
+      <CardActions>
+        <Button
+          sx={{ width: 1 }}
+          variant={checkedState ? "contained" : "outlined"}
+          color="success"
+          onClick={handleClick}
+        >
+          {checkedState ? <CheckIcon /> : response}
+        </Button>
+      </CardActions>
     </Card>
   );
 }
