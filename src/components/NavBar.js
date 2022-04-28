@@ -8,7 +8,7 @@ function NavBar() {
   const { ac, setAc } = useContext(AcContext);
 
   return (
-    <AppBar position="fixed" open="true">
+    <AppBar position="fixed" open={true}>
       <Toolbar>
         <IconButton
           size="large"
