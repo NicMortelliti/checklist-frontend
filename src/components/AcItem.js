@@ -7,7 +7,7 @@ function AcItem({ itemData }) {
 
   return (
     <Box m={2}>
-      <Card sx={{ maxWidth: 345 }} onClick={() => setAc(itemData.tail)}>
+      <Card raised sx={{ maxWidth: 345 }} onClick={() => setAc(itemData.tail)}>
         <CardMedia
           component="img"
           height="250"
