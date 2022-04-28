@@ -4,7 +4,7 @@ import ItemList from "./ItemList";
 import EmergencyBtn from "./EmergencyBtn";
 import NewItemForm from "./NewItemForm";
 import AcListModal from "./AcListModal";
-import { Box } from "@mui/material";
+import { Box, Toolbar } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseProvider } from "../context/phase";
 
@@ -37,41 +37,40 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <PhaseProvider>
-        <Box sx={{ display: "flex" }}>
-          <NavBar />
-          <Box
-            component="main"
-            sx={{
-              flexGrow: 1,
-              height: "100vh",
-              overflow: "auto",
-            }}
-          >
-            <ItemList
-              acArray={acArray}
-              checklistItems={rawDataArray}
-              activePhase={activePhase}
-              setDialogState={setDialogState}
-            />
-          </Box>
-          {ac ? (
-            <>
-              <NewItemForm
-                dialogState={dialogState}
-                setDialogState={setDialogState}
-                url={URL}
-                acArray={acArray}
-                setAcArray={setAcArray}
-              />
-              <EmergencyBtn />
-            </>
-          ) : null}
-          <AcListModal acArray={acArray} />
+    <PhaseProvider>
+      <Box sx={{ display: "flex" }}>
+        <NavBar />
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            height: "100vh",
+            overflow: "auto",
+          }}
+        >
+          <Toolbar />
+          <ItemList
+            acArray={acArray}
+            checklistItems={rawDataArray}
+            activePhase={activePhase}
+            setDialogState={setDialogState}
+          />
         </Box>
-      </PhaseProvider>
-    </div>
+        {ac ? (
+          <>
+            <NewItemForm
+              dialogState={dialogState}
+              setDialogState={setDialogState}
+              url={URL}
+              acArray={acArray}
+              setAcArray={setAcArray}
+            />
+            <EmergencyBtn />
+          </>
+        ) : null}
+        <AcListModal acArray={acArray} />
+      </Box>
+    </PhaseProvider>
   );
 }
 
