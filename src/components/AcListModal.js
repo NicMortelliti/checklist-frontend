@@ -14,7 +14,7 @@ function AcListModal({ acArray }) {
   return !ac ? (
     <Dialog open={!ac} TransitionComponent={Transition} scroll="paper">
       <DialogTitle>Select an aircraft</DialogTitle>
-      <DialogContent dividers="true" alignItems="center">
+      <DialogContent dividers={true} alignItems="center">
         {acArray.map(aircraft => (
           <AcItem key={aircraft.id} itemData={aircraft} />
         ))}
