@@ -42,7 +42,7 @@ function NewItemForm({
       .then(r => r.json())
       .then(r => console.log("Success:", JSON.stringify(r)))
       .then(newItem => setAcArray([...acArray, newItem]))
-      .then(setDialogState);
+      .then(() => setDialogState(!dialogState));
   }
 
   return (
