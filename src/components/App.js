@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import NavBar from "./NavBar";
+import NavBarBottom from "./NavBarBottom";
 import ItemList from "./ItemList";
-import EmergencyBtn from "./EmergencyBtn";
 import NewItemForm from "./NewItemForm";
 import AcListModal from "./AcListModal";
 import { Box } from "@mui/material";
@@ -45,11 +45,7 @@ function App() {
       <Box sx={{ display: "flex" }}>
         <NavBar />
         <Box component="main" sx={{ flexGrow: 1 }}>
-          <ItemList
-            acArray={acArray}
-            checklistItems={rawDataArray}
-            setDialogState={setDialogState}
-          />
+          <ItemList acArray={acArray} checklistItems={rawDataArray} />
         </Box>
         {ac ? (
           <>
@@ -60,7 +56,7 @@ function App() {
               acArray={acArray}
               setAcArray={setAcArray}
             />
-            <EmergencyBtn />
+            <NavBarBottom setDialogState={setDialogState} />
           </>
         ) : null}
         <AcListModal acArray={acArray} />

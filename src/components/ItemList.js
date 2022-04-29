@@ -1,17 +1,16 @@
 import React, { useContext } from "react";
 import Item from "./Item";
 
-import { Stack, Fab, Paper } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { Stack, Paper } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 
-function ItemList({ checklistItems, setDialogState }) {
+function ItemList({ checklistItems }) {
   const { ac } = useContext(AcContext);
   const { currentPhase } = useContext(PhaseContext);
 
   return (
-    // Padding of 70 oixels top and bottom prevents cards being covered by app bars
+    // Padding of 70 pixels top and bottom prevents cards being covered by app bars
     <Paper square sx={{ pt: "70px", pb: "70px" }}>
       <Stack alignItems="center" spacing={2}>
         {
@@ -27,14 +26,6 @@ function ItemList({ checklistItems, setDialogState }) {
             : null
         }
       </Stack>
-      <Fab
-        color="primary"
-        aria-label="add"
-        sx={{ position: "fixed", bottom: 16, right: 16 }}
-        onClick={() => setDialogState(true)}
-      >
-        <AddIcon />
-      </Fab>
     </Paper>
   );
 }
