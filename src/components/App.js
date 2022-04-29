@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   return (
-    <PhaseProvider>
+    <>
       <Box sx={{ display: "flex" }}>
         <NavBar />
         <Box
@@ -70,7 +70,7 @@ function App() {
         ) : null}
         <AcListModal acArray={acArray} />
       </Box>
-    </PhaseProvider>
+    </>
   );
 }
 
