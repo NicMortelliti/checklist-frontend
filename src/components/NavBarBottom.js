@@ -11,7 +11,7 @@ function NavBarBottom({ setDialogState }) {
     <AppBar position="fixed" color="inherit" sx={{ top: "auto", bottom: 0 }}>
       <Toolbar>
         <Button
-          variant="text"
+          variant="outlined"
           color="error"
           label="Emergency"
           onClick={() => setCurrentPhase("Emergency")}
@@ -21,7 +21,7 @@ function NavBarBottom({ setDialogState }) {
         <Fab
           color="primary"
           aria-label="add"
-          sx={{ position: "fixed", bottom: 16, right: 16 }}
+          sx={{ position: "fixed", bottom: 35, right: 35 }}
           onClick={() => setDialogState(true)}
         >
           <AddIcon />
