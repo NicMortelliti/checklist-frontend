@@ -42,11 +42,18 @@ function NewItemForm({
       .then(r => r.json())
       .then(r => console.log("Success:", JSON.stringify(r)))
       .then(newItem => setAcArray([...acArray, newItem]))
-      .then(() => setDialogState(!dialogState));
+      .then(updateStates);
+  }
+
+  function updateStates() {
+    setPhase("");
+    setCall("");
+    setResponse("");
+    setDialogState(!dialogState);
   }
 
   return (
-    <Dialog open={dialogState}>
+    <Dialog open={dialogState} onBackdropClick={() => updateStates()}>
       <DialogTitle>{`Add new checklist item for ${ac}`} </DialogTitle>
       <DialogContent>
         <FormGroup>
