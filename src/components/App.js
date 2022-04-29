@@ -4,7 +4,7 @@ import ItemList from "./ItemList";
 import EmergencyBtn from "./EmergencyBtn";
 import NewItemForm from "./NewItemForm";
 import AcListModal from "./AcListModal";
-import { Box, Toolbar } from "@mui/material";
+import { Box } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 
@@ -45,7 +45,6 @@ function App() {
       <Box sx={{ display: "flex" }}>
         <NavBar />
         <Box component="main" sx={{ flexGrow: 1 }}>
-          <Toolbar />
           <ItemList
             acArray={acArray}
             checklistItems={rawDataArray}

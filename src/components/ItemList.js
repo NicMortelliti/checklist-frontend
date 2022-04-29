@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Item from "./Item";
 
-import { Box, Stack, Fab } from "@mui/material";
+import { Stack, Fab, Paper } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
@@ -11,7 +11,8 @@ function ItemList({ checklistItems, setDialogState }) {
   const { currentPhase } = useContext(PhaseContext);
 
   return (
-    <Box>
+    // Padding of 70 oixels top and bottom prevents cards being covered by app bars
+    <Paper square sx={{ pt: "70px", pb: "70px" }}>
       <Stack alignItems="center" spacing={2}>
         {
           // If CurrentAC is not blank, list checklist items for selected aircraft
@@ -34,7 +35,7 @@ function ItemList({ checklistItems, setDialogState }) {
       >
         <AddIcon />
       </Fab>
-    </Box>
+    </Paper>
   );
 }
 
