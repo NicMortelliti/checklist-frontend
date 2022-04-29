@@ -6,7 +6,7 @@ import NewItemForm from "./NewItemForm";
 import AcListModal from "./AcListModal";
 import { Box, Toolbar } from "@mui/material";
 import { AcContext } from "../context/ac";
-import { PhaseProvider } from "../context/phase";
+import { PhaseContext } from "../context/phase";
 
 const URL = "http://localhost:3000";
 
@@ -17,6 +17,7 @@ function App() {
   const [activePhase, setActivePhase] = useState("Preflight");
   const [dialogState, setDialogState] = useState(false);
   const { ac } = useContext(AcContext);
+  const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
 
   // Fetch GET checklist data
   useEffect(() => {
@@ -36,6 +37,10 @@ function App() {
       .then(data => setAcArray(data));
   }, []);
 
+  useEffect(() => {
+    setCurrentPhase(ac ? "Preflight" : "");
+  }, [ac]);
+
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -52,7 +57,6 @@ function App() {
           <ItemList
             acArray={acArray}
             checklistItems={rawDataArray}
-            activePhase={activePhase}
             setDialogState={setDialogState}
           />
         </Box>

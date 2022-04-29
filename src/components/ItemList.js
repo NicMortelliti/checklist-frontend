@@ -1,12 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Item from "./Item";
 
-import { AcContext } from "../context/ac";
 import { Box, Stack, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { AcContext } from "../context/ac";
+import { PhaseContext } from "../context/phase";
 
-function ItemList({ checklistItems, activePhase, setDialogState }) {
+function ItemList({ checklistItems, setDialogState }) {
   const { ac } = useContext(AcContext);
+  const { currentPhase } = useContext(PhaseContext);
 
   return (
     <Box>
@@ -16,7 +18,7 @@ function ItemList({ checklistItems, activePhase, setDialogState }) {
           ac !== ""
             ? checklistItems.map(item =>
                 ac === item.tail ? (
-                  activePhase === item.phase ? (
+                  currentPhase === item.phase ? (
                     <Item key={item.id} itemData={item} />
                   ) : null
                 ) : null
