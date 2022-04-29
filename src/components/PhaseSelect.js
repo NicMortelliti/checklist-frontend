@@ -5,7 +5,7 @@ import { PhaseContext } from "../context/phase";
 function PhaseSelect() {
   const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
 
-  const phases = ["Preflight", "Taxi", "Takeoff", "Cruise", "Landing"];
+  const phases = ["Preflight", "Taxi", "Emergency"];
 
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
