@@ -44,14 +44,7 @@ function App() {
     <>
       <Box sx={{ display: "flex" }}>
         <NavBar />
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
-          }}
-        >
+        <Box component="main" sx={{ flexGrow: 1 }}>
           <Toolbar />
           <ItemList
             acArray={acArray}
