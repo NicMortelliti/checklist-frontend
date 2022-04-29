@@ -10,7 +10,13 @@ function PhaseSelect() {
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
       <InputLabel id="phase">Phase</InputLabel>
-      <Select labelId="phase" id="phase" value={currentPhase} label="Phase">
+      <Select
+        labelId="phase"
+        id="phase"
+        value={currentPhase}
+        label="Phase"
+        variant="standard"
+      >
         {phases.map(phase => {
           return (
             <MenuItem
