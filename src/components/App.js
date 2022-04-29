@@ -44,9 +44,11 @@ function App() {
     <>
       <Box sx={{ display: "flex" }}>
         <NavBar />
-        <Box component="main" sx={{ flexGrow: 1 }}>
-          <ItemList acArray={acArray} checklistItems={rawDataArray} />
-        </Box>
+        {ac ? (
+          <Box component="main" sx={{ flexGrow: 1 }}>
+            <ItemList acArray={acArray} checklistItems={rawDataArray} />
+          </Box>
+        ) : null}
         {ac ? (
           <>
             <NewItemForm
