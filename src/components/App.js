@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
 import ItemList from "./ItemList";
 import NewItemForm from "./NewItemForm";
 import AcList from "./AcList";
-import { Box } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 
@@ -29,42 +29,46 @@ function App() {
       });
   }, []);
 
+  // Fetch GET aircraft data
   useEffect(() => {
     fetch(`${URL}/aircraft`)
       .then(r => r.json())
       .then(data => setAcArray(data));
   }, []);
 
+  // Default to "Preflight" phase when an aircraft is selected
   useEffect(() => {
     setCurrentPhase(ac ? "Preflight" : "");
   }, [ac]);
 
   return (
-    <>
-      <Box sx={{ display: "flex" }}>
+    <Router>
+      <div className="App">
         <NavBar />
-        {ac ? (
-          <Box component="main" sx={{ flexGrow: 1 }}>
-            <ItemList
-              checklistItems={rawDataArray}
-              handleAddClick={setDialogState}
-            />
-          </Box>
-        ) : null}
-        {ac ? (
-          <>
-            <NewItemForm
-              dialogState={dialogState}
-              setDialogState={setDialogState}
-              url={URL}
-              acArray={acArray}
-              setAcArray={setAcArray}
-            />
-          </>
-        ) : null}
-        <AcList acArray={acArray} />
-      </Box>
-    </>
+        <div className="content">
+          <Switch>
+            <Route exact path="/">
+              <AcList acArray={acArray} />
+            </Route>
+            <Route exact path="/{ac}/checklist">
+              <ItemList
+                checklistItems={rawDataArray}
+                handleAddClick={setDialogState}
+              />
+            </Route>
+            <Route exact path="/{ac}/new-item">
+              <NewItemForm
+                dialogState={dialogState}
+                setDialogState={setDialogState}
+                url={URL}
+                acArray={acArray}
+                setAcArray={setAcArray}
+              />
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </Router>
   );
 }
 
