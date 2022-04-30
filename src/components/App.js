@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import NavBar from "./NavBar";
-import NavBarBottom from "./NavBarBottom";
+import AddBtn from "./AddBtn";
 import ItemList from "./ItemList";
 import NewItemForm from "./NewItemForm";
 import AcListModal from "./AcListModal";
@@ -58,7 +58,7 @@ function App() {
               acArray={acArray}
               setAcArray={setAcArray}
             />
-            <NavBarBottom setDialogState={setDialogState} />
+            <AddBtn handleClick={setDialogState} />
           </>
         ) : null}
         <AcListModal acArray={acArray} />

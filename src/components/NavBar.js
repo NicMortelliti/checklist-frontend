@@ -26,10 +26,11 @@ function NavBar() {
           onClick={() => setAc("")}
         >
           <ChevronLeftIcon />
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            {ac}
+          </Typography>
         </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {ac}
-        </Typography>
+
         <Button color="inherit" onClick={() => setCurrentPhase("Preflight")}>
           Preflight
         </Button>
