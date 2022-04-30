@@ -16,40 +16,47 @@ function NavBar() {
 
   const phases = ["Preflight", "Taxi"];
 
+  // Render nav bar message
+  const renderMsg = <Typography variant="h6">Select an aircraft...</Typography>;
+
+  // Render nav bar buttons
+  const renderBtns = (
+    <div>
+      <IconButton
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="back"
+        sx={{ mr: 2 }}
+        onClick={() => setAc("")}
+      >
+        <ChevronLeftIcon />
+        <Typography variant="button" component="div" sx={{ flexGrow: 1 }}>
+          {ac}
+        </Typography>
+      </IconButton>
+      {phases.map(phase => (
+        <Button
+          key={phase}
+          color="inherit"
+          onClick={() => setCurrentPhase(phase)}
+        >
+          {phase}
+        </Button>
+      ))}
+      <Button
+        color="error"
+        onClick={() => setCurrentPhase("Emergency")}
+        variant="contained"
+      >
+        EMERGENCY
+      </Button>
+    </div>
+  );
+
   return (
     <AppBar position="fixed" open={true}>
-      <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="back"
-          sx={{ mr: 2 }}
-          onClick={() => setAc("")}
-        >
-          <ChevronLeftIcon />
-          <Typography variant="button" component="div" sx={{ flexGrow: 1 }}>
-            {ac}
-          </Typography>
-        </IconButton>
-
-        {phases.map(phase => (
-          <Button
-            key={phase}
-            color="inherit"
-            onClick={() => setCurrentPhase(phase)}
-          >
-            {phase}
-          </Button>
-        ))}
-        <Button
-          color="error"
-          onClick={() => setCurrentPhase("Emergency")}
-          variant="contained"
-        >
-          EMERGENCY
-        </Button>
-      </Toolbar>
+      <Toolbar>{ac ? renderBtns : renderMsg}</Toolbar>
     </AppBar>
   );
 }
