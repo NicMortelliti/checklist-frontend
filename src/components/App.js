@@ -46,7 +46,10 @@ function App() {
         <NavBar />
         {ac ? (
           <Box component="main" sx={{ flexGrow: 1 }}>
-            <ItemList acArray={acArray} checklistItems={rawDataArray} />
+            <ItemList
+              checklistItems={rawDataArray}
+              handleAddClick={setDialogState}
+            />
           </Box>
         ) : null}
         {ac ? (
@@ -58,7 +61,6 @@ function App() {
               acArray={acArray}
               setAcArray={setAcArray}
             />
-            <AddBtn handleClick={setDialogState} />
           </>
         ) : null}
         <AcListModal acArray={acArray} />
