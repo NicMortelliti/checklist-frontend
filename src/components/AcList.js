@@ -3,7 +3,7 @@ import AcItem from "./AcItem";
 import { AcContext } from "../context/ac";
 import { Paper } from "@mui/material";
 
-function AcListModal({ acArray }) {
+function AcList({ acArray }) {
   const { ac } = useContext(AcContext);
 
   return (
@@ -15,4 +15,4 @@ function AcListModal({ acArray }) {
   );
 }
 
-export default AcListModal;
+export default AcList;

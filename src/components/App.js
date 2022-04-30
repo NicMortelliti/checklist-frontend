@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import NavBar from "./NavBar";
-import AddBtn from "./AddBtn";
 import ItemList from "./ItemList";
 import NewItemForm from "./NewItemForm";
-import AcListModal from "./AcListModal";
+import AcList from "./AcList";
 import { Box } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
@@ -63,7 +62,7 @@ function App() {
             />
           </>
         ) : null}
-        <AcListModal acArray={acArray} />
+        <AcList acArray={acArray} />
       </Box>
     </>
   );
