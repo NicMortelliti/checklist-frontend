@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import Item from "./Item";
+import AddBtn from "./AddBtn";
 
 import { Stack, Paper } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 
-function ItemList({ checklistItems }) {
+function ItemList({ checklistItems, handleAddClick }) {
   const { ac } = useContext(AcContext);
   const { currentPhase } = useContext(PhaseContext);
 
@@ -26,6 +27,7 @@ function ItemList({ checklistItems }) {
             : null
         }
       </Stack>
+      <AddBtn handleAddClick={handleAddClick} />
     </Paper>
   );
 }
