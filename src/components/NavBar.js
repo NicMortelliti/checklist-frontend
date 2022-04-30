@@ -14,6 +14,8 @@ function NavBar() {
   const { ac, setAc } = useContext(AcContext);
   const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
 
+  const phases = ["Preflight", "Taxi"];
+
   return (
     <AppBar position="fixed" open={true}>
       <Toolbar>
@@ -26,17 +28,20 @@ function NavBar() {
           onClick={() => setAc("")}
         >
           <ChevronLeftIcon />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="button" component="div" sx={{ flexGrow: 1 }}>
             {ac}
           </Typography>
         </IconButton>
 
-        <Button color="inherit" onClick={() => setCurrentPhase("Preflight")}>
-          Preflight
-        </Button>
-        <Button color="inherit" onClick={() => setCurrentPhase("Taxi")}>
-          Taxi
-        </Button>
+        {phases.map(phase => (
+          <Button
+            key={phase}
+            color="inherit"
+            onClick={() => setCurrentPhase(phase)}
+          >
+            {phase}
+          </Button>
+        ))}
         <Button
           color="error"
           onClick={() => setCurrentPhase("Emergency")}
