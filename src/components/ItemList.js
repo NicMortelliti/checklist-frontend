@@ -1,15 +1,24 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Item from "./Item";
-import AddBtn from "./AddBtn";
-
-import { Button, Stack, Paper, Toolbar } from "@mui/material";
+import { Button, Paper, Stack, Toolbar } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
+import AddBtn from "./AddBtn";
+import AcItem from "./AcItem";
+import Item from "./Item";
 
 function ItemList({ listItems }) {
   const { ac } = useContext(AcContext);
   const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
+
+  // Render list of aircraft
+  const renderAcItems = (
+    <div>
+      {listItems.map(item => (
+        <AcItem key={item.id} itemData={item} />
+      ))}
+    </div>
+  );
 
   // Render list of flight phases
   const renderPhaseItems = (
@@ -49,7 +58,11 @@ function ItemList({ listItems }) {
     // Padding of 70 pixels top and bottom prevents cards being covered by app bars
     <Paper square sx={{ pt: "70px", pb: "70px" }}>
       <Stack alignItems="center" spacing={2}>
-        {currentPhase ? renderCheckItems : renderPhaseItems}
+        {ac
+          ? currentPhase
+            ? renderCheckItems
+            : renderPhaseItems
+          : renderAcItems}
       </Stack>
       <AddBtn ac={ac} />
     </Paper>

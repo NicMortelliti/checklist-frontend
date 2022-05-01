@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import { Toolbar } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
-import AcList from "./AcList";
 import ItemList from "./ItemList";
 import NavBar from "./NavBar";
 import NewItemForm from "./NewItemForm";
@@ -50,13 +49,11 @@ function App() {
         <Switch>
           {/* Render aircraft list component */}
           <Route exact path="/">
-            <Toolbar />
-            <AcList acArray={acArray} />
+            <ItemList listItems={acArray} />
           </Route>
 
           {/* Render flight phase selection page */}
           <Route exact path={`/${ac}`}>
-            <Toolbar />
             <ItemList listItems={phases} />
           </Route>
 
