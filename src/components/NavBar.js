@@ -9,8 +9,6 @@ function NavBar() {
   const { ac, setAc } = useContext(AcContext);
   const { setCurrentPhase } = useContext(PhaseContext);
 
-  const phases = ["Preflight", "Taxi", "Emergency"];
-
   // Render nav bar message
   const renderMsg = <Typography variant="h6">Select an aircraft...</Typography>;
 
@@ -26,18 +24,15 @@ function NavBar() {
       >
         {ac}
       </Button>
-      {phases.map(phase => (
-        <Button
-          component={Link}
-          to={`/${ac}/${phase}`}
-          key={phase}
-          color={phase !== "Emergency" ? "inherit" : "error"}
-          variant={phase !== "Emergency" ? "text" : "contained"}
-          onClick={() => setCurrentPhase(phase)}
-        >
-          {phase}
-        </Button>
-      ))}
+      <Button
+        component={Link}
+        to={`/${ac}/Emergency`}
+        color="error"
+        variant="contained"
+        onClick={() => setCurrentPhase("Emergency")}
+      >
+        EMERGENCY
+      </Button>
     </div>
   );
 

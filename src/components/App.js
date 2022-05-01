@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Route, useRouteMatch, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
 import ItemList from "./ItemList";
 import NewItemForm from "./NewItemForm";
@@ -15,8 +15,8 @@ function App() {
   const [rawDataArray, setRawDataArray] = useState([]);
   const [acArray, setAcArray] = useState([]);
   const { ac } = useContext(AcContext);
-  const { currentPhase } = useContext(PhaseContext);
-  const match = useRouteMatch();
+  const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
+  const phases = ["Preflight", "Taxi", "Emergency"];
 
   // Fetch GET checklist data
   useEffect(() => {
@@ -37,6 +37,11 @@ function App() {
       .then(data => setAcArray(data));
   }, []);
 
+  // If Aircraft is not selected, set current phase to blank string
+  useEffect(() => {
+    return ac ? null : setCurrentPhase("");
+  }, [ac, setCurrentPhase]);
+
   return (
     <div className="App">
       <NavBar />
@@ -48,18 +53,25 @@ function App() {
             <AcList acArray={acArray} />
           </Route>
 
+          {/* Render flight phase selection page */}
+          <Route exact path={`/${ac}`}>
+            <Toolbar/>
+            <ItemList listItems={phases} />
+          </Route>
+
           {/* Render checklist component */}
           {/* This worked --> path="/N6044P/Preflight" */}
-          <Route path={`/${ac}/${currentPhase}`}>
-            <ItemList checklistItems={rawDataArray} />
+          <Route exact path={`/${ac}/${currentPhase}`}>
+            <ItemList listItems={rawDataArray} />
           </Route>
 
           {/* Render new checklist item form */}
           <Route exact path={`/${ac}/newitem`}>
             <NewItemForm url={URL} acArray={acArray} setAcArray={setAcArray} />
           </Route>
+
+          {/* Render page not found */}
           <Route>
-            <Toolbar />
             <Toolbar />
             <h5>Page not found</h5>
           </Route>
