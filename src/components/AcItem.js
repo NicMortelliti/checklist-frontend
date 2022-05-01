@@ -13,7 +13,7 @@ function AcItem({ itemData }) {
         sx={{ maxWidth: 345 }}
         onClick={() => setAc(itemData.tail)}
         component={Link}
-        to={itemData.tail + "/checklist"}
+        to={itemData.tail}
       >
         <CardMedia
           component="img"

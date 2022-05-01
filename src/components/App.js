@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, useRouteMatch, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
 import ItemList from "./ItemList";
 import NewItemForm from "./NewItemForm";
 import AcList from "./AcList";
 import { AcContext } from "../context/ac";
+import { PhaseContext } from "../context/phase";
+import { Toolbar } from "@mui/material";
 
 const URL = "http://localhost:3000";
 
@@ -13,6 +15,8 @@ function App() {
   const [rawDataArray, setRawDataArray] = useState([]);
   const [acArray, setAcArray] = useState([]);
   const { ac } = useContext(AcContext);
+  const { currentPhase } = useContext(PhaseContext);
+  const match = useRouteMatch();
 
   // Fetch GET checklist data
   useEffect(() => {
@@ -34,28 +38,34 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="App">
-        <NavBar />
-        <div className="content">
-          <Switch>
-            <Route exact path="/">
-              <AcList acArray={acArray} />
-            </Route>
-            <Route exact path={ac + "/checklist"}>
-              <ItemList checklistItems={rawDataArray} />
-            </Route>
-            <Route exact path={ac + "/checklist/newitem"}>
-              <NewItemForm
-                url={URL}
-                acArray={acArray}
-                setAcArray={setAcArray}
-              />
-            </Route>
-          </Switch>
-        </div>
+    <div className="App">
+      <NavBar />
+      <div className="content">
+        <Switch>
+          {/* Render aircraft list component */}
+          <Route exact path="/">
+            <Toolbar />
+            <AcList acArray={acArray} />
+          </Route>
+
+          {/* Render checklist component */}
+          {/* This worked --> path="/N6044P/Preflight" */}
+          <Route path={`/${ac}/${currentPhase}`}>
+            <ItemList checklistItems={rawDataArray} />
+          </Route>
+
+          {/* Render new checklist item form */}
+          <Route exact path={`/${ac}/newitem`}>
+            <NewItemForm url={URL} acArray={acArray} setAcArray={setAcArray} />
+          </Route>
+          <Route>
+            <Toolbar />
+            <Toolbar />
+            <h5>Page not found</h5>
+          </Route>
+        </Switch>
       </div>
-    </Router>
+    </div>
   );
 }
 

@@ -10,7 +10,7 @@ function AddBtn({ ac }) {
       aria-label="add"
       sx={{ position: "fixed", bottom: 15, right: 15 }}
       component={Link}
-      to={ac + "/checklist/newitem"}
+      to={`/${ac}/newitem`}
     >
       <AddIcon />
     </Fab>

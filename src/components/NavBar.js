@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 import { AppBar, Button, Toolbar, Typography } from "@mui/material/";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { AcContext } from "../context/ac";
@@ -9,6 +10,8 @@ function NavBar() {
   const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
 
   const phases = ["Preflight", "Taxi", "Emergency"];
+
+  const match = useRouteMatch();
 
   // Render nav bar message
   const renderMsg = <Typography variant="h6">Select an aircraft...</Typography>;
@@ -21,6 +24,8 @@ function NavBar() {
       </Button>
       {phases.map(phase => (
         <Button
+          component={Link}
+          to={`${ac}/${phase}`}
           key={phase}
           color={phase !== "Emergency" ? "inherit" : "error"}
           variant={phase !== "Emergency" ? "text" : "contained"}
