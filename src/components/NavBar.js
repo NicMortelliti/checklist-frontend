@@ -25,7 +25,7 @@ function NavBar() {
       {phases.map(phase => (
         <Button
           component={Link}
-          to={`${ac}/${phase}`}
+          to={`/${ac}/${phase}`}
           key={phase}
           color={phase !== "Emergency" ? "inherit" : "error"}
           variant={phase !== "Emergency" ? "text" : "contained"}
