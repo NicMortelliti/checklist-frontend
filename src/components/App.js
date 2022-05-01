@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import NavBar from "./NavBar";
-import ItemList from "./ItemList";
-import NewItemForm from "./NewItemForm";
-import AcList from "./AcList";
+import { Toolbar } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
-import { Toolbar } from "@mui/material";
+import AcList from "./AcList";
+import ItemList from "./ItemList";
+import NavBar from "./NavBar";
+import NewItemForm from "./NewItemForm";
 
+// Set URL variable
 const URL = "http://localhost:3000";
 
 function App() {
@@ -55,7 +56,7 @@ function App() {
 
           {/* Render flight phase selection page */}
           <Route exact path={`/${ac}`}>
-            <Toolbar/>
+            <Toolbar />
             <ItemList listItems={phases} />
           </Route>
 
