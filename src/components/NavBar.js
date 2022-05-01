@@ -7,7 +7,7 @@ import { PhaseContext } from "../context/phase";
 
 function NavBar() {
   const { ac, setAc } = useContext(AcContext);
-  const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
+  const { setCurrentPhase } = useContext(PhaseContext);
 
   const phases = ["Preflight", "Taxi", "Emergency"];
 
