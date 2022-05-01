@@ -1,24 +1,11 @@
 import React, { useContext, useState } from "react";
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  FormControl,
-  FormGroup,
-} from "@mui/material";
+import { Button, FormControl, FormGroup, Paper } from "@mui/material";
 import { AcContext } from "../context/ac";
 import NewItemPhase from "./NewItemPhase";
 import NewItemDescription from "./NewItemDescription";
 import NewItemResponse from "./NewItemResponse";
 
-function NewItemForm({
-  dialogState,
-  setDialogState,
-  url,
-  acArray,
-  setAcArray,
-}) {
+function NewItemForm({ url, acArray, setAcArray }) {
   const { ac } = useContext(AcContext);
   const [phase, setPhase] = useState("");
   const [call, setCall] = useState("");
@@ -49,30 +36,26 @@ function NewItemForm({
     setPhase("");
     setCall("");
     setResponse("");
-    setDialogState(!dialogState);
   }
 
   return (
-    <Dialog open={dialogState} onBackdropClick={() => updateStates()}>
-      <DialogTitle>{`Add new checklist item for ${ac}`} </DialogTitle>
-      <DialogContent>
-        <FormGroup>
-          <FormControl required>
-            <NewItemPhase phase={phase} setPhase={setPhase} />
-            <NewItemDescription call={call} setCall={setCall} />
-            <NewItemResponse response={response} setResponse={setResponse} />
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              onClick={e => handleSubmit(e)}
-            >
-              Submit
-            </Button>
-          </FormControl>
-        </FormGroup>
-      </DialogContent>
-    </Dialog>
+    <Paper sx={{ pt: "50px" }}>
+      <FormGroup>
+        <FormControl required>
+          <NewItemPhase phase={phase} setPhase={setPhase} />
+          <NewItemDescription call={call} setCall={setCall} />
+          <NewItemResponse response={response} setResponse={setResponse} />
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={e => handleSubmit(e)}
+          >
+            Submit
+          </Button>
+        </FormControl>
+      </FormGroup>
+    </Paper>
   );
 }
 

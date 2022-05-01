@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { AcContext } from "../context/ac";
 
@@ -7,7 +8,13 @@ function AcItem({ itemData }) {
 
   return (
     <Box m={2}>
-      <Card raised sx={{ maxWidth: 345 }} onClick={() => setAc(itemData.tail)}>
+      <Card
+        raised
+        sx={{ maxWidth: 345 }}
+        onClick={() => setAc(itemData.tail)}
+        component={Link}
+        to={itemData.tail + "/checklist"}
+      >
         <CardMedia
           component="img"
           height="250"

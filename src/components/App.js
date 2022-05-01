@@ -5,7 +5,6 @@ import ItemList from "./ItemList";
 import NewItemForm from "./NewItemForm";
 import AcList from "./AcList";
 import { AcContext } from "../context/ac";
-import { PhaseContext } from "../context/phase";
 
 const URL = "http://localhost:3000";
 
@@ -13,9 +12,7 @@ function App() {
   // Set up states
   const [rawDataArray, setRawDataArray] = useState([]);
   const [acArray, setAcArray] = useState([]);
-  const [dialogState, setDialogState] = useState(false);
   const { ac } = useContext(AcContext);
-  const { setCurrentPhase } = useContext(PhaseContext);
 
   // Fetch GET checklist data
   useEffect(() => {
@@ -36,11 +33,6 @@ function App() {
       .then(data => setAcArray(data));
   }, []);
 
-  // Default to "Preflight" phase when an aircraft is selected
-  useEffect(() => {
-    setCurrentPhase(ac ? "Preflight" : "");
-  }, [ac]);
-
   return (
     <Router>
       <div className="App">
@@ -50,16 +42,11 @@ function App() {
             <Route exact path="/">
               <AcList acArray={acArray} />
             </Route>
-            <Route exact path="/{ac}/checklist">
-              <ItemList
-                checklistItems={rawDataArray}
-                handleAddClick={setDialogState}
-              />
+            <Route exact path={ac + "/checklist"}>
+              <ItemList checklistItems={rawDataArray} />
             </Route>
-            <Route exact path="/{ac}/new-item">
+            <Route exact path={ac + "/checklist/newitem"}>
               <NewItemForm
-                dialogState={dialogState}
-                setDialogState={setDialogState}
                 url={URL}
                 acArray={acArray}
                 setAcArray={setAcArray}

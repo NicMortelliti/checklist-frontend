@@ -1,11 +1,5 @@
 import React, { useContext } from "react";
-import {
-  AppBar,
-  Button,
-  Toolbar,
-  Typography,
-  IconButton,
-} from "@mui/material/";
+import { AppBar, Button, Toolbar, Typography } from "@mui/material/";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
@@ -14,7 +8,7 @@ function NavBar() {
   const { ac, setAc } = useContext(AcContext);
   const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
 
-  const phases = ["Preflight", "Taxi"];
+  const phases = ["Preflight", "Taxi", "Emergency"];
 
   // Render nav bar message
   const renderMsg = <Typography variant="h6">Select an aircraft...</Typography>;
@@ -22,35 +16,19 @@ function NavBar() {
   // Render nav bar buttons
   const renderBtns = (
     <div>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="back"
-        sx={{ mr: 2 }}
-        onClick={() => setAc("")}
-      >
-        <ChevronLeftIcon />
-        <Typography variant="button" component="div" sx={{ flexGrow: 1 }}>
-          {ac}
-        </Typography>
-      </IconButton>
+      <Button color="inherit" startIcon={<ChevronLeftIcon />}>
+        {ac}
+      </Button>
       {phases.map(phase => (
         <Button
           key={phase}
-          color="inherit"
+          color={phase !== "Emergency" ? "inherit" : "error"}
+          variant={phase !== "Emergency" ? "text" : "contained"}
           onClick={() => setCurrentPhase(phase)}
         >
           {phase}
         </Button>
       ))}
-      <Button
-        color="error"
-        onClick={() => setCurrentPhase("Emergency")}
-        variant="contained"
-      >
-        EMERGENCY
-      </Button>
     </div>
   );
 
