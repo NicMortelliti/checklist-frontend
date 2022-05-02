@@ -1,21 +1,21 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { Box, Card, CardContent, Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 import AddBtn from "./AddBtn";
 import AcItem from "./AcItem";
+import PhaseItem from "./PhaseItem";
 import Item from "./Item";
 
 function ItemList({ listItems }) {
   const { ac } = useContext(AcContext);
-  const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
+  const { currentPhase } = useContext(PhaseContext);
 
   // Render list of aircraft
   const renderAcItems = (
     <div>
       {listItems.map(item => (
-        <AcItem key={item.id} itemData={item} />
+        <AcItem key={item.id} item={item} />
       ))}
     </div>
   );
@@ -24,24 +24,7 @@ function ItemList({ listItems }) {
   const renderPhaseItems = (
     <div>
       {listItems.map(item => (
-        <Box m={2}>
-          <Card
-            raised
-            sx={{ maxWidth: 345 }}
-            key={item}
-            component={Link}
-            to={`/${ac}/${item}`}
-            color={item !== "Emergency" ? "inherit" : "error"}
-            variant={item !== "Emergency" ? "text" : "contained"}
-            onClick={() => setCurrentPhase(item)}
-          >
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {item}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Box>
+        <PhaseItem key={item} item={item} />
       ))}
     </div>
   );
