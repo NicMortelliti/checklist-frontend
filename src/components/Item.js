@@ -9,7 +9,7 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import { PhaseContext } from "../context/phase";
 
-function Item({ itemData: { id, tail, phase, description, response } }) {
+function Item({ itemData: { description, response } }) {
   const [checkedState, setCheckedState] = useState(false);
   const { currentPhase } = useContext(PhaseContext);
 
