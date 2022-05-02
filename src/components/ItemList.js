@@ -1,6 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Button, Paper, Stack } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  Container,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 import AddBtn from "./AddBtn";
@@ -24,16 +31,24 @@ function ItemList({ listItems }) {
   const renderPhaseItems = (
     <div>
       {listItems.map(item => (
-        <Button
-          key={item}
-          component={Link}
-          to={`/${ac}/${item}`}
-          color={item !== "Emergency" ? "inherit" : "error"}
-          variant={item !== "Emergency" ? "text" : "contained"}
-          onClick={() => setCurrentPhase(item)}
-        >
-          {item}
-        </Button>
+        <Box m={2}>
+          <Card
+            raised
+            sx={{ maxWidth: 345 }}
+            key={item}
+            component={Link}
+            to={`/${ac}/${item}`}
+            color={item !== "Emergency" ? "inherit" : "error"}
+            variant={item !== "Emergency" ? "text" : "contained"}
+            onClick={() => setCurrentPhase(item)}
+          >
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {item}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Box>
       ))}
     </div>
   );
@@ -55,22 +70,19 @@ function ItemList({ listItems }) {
   );
 
   return (
-    // Padding of 70 pixels top and bottom prevents cards being covered by app bars
-    <Paper square sx={{ pt: "70px", pb: "70px" }}>
-      <Stack alignItems="center" spacing={2}>
-        {/*
-        The ternary below works as follows:
+    <Container maxWidth="xs">
+      {/*
+          The ternary below works as follows:
               1) if an aircraft is NOT selected, render a list of aircraft
               2) if an aircraft IS selected, but a phase is NOT selected, render a list of phases
               3) if both an aircraft and a phase ARE selected, render the checklist for the selected aircraft and phase
-        */}
-        {ac
-          ? currentPhase
-            ? renderCheckItems
-            : renderPhaseItems
-          : renderAcItems}
-      </Stack>
-    </Paper>
+          */}
+      {ac
+        ? currentPhase
+          ? renderCheckItems
+          : renderPhaseItems
+        : renderAcItems}
+    </Container>
   );
 }
 
