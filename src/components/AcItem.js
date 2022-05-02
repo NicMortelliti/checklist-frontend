@@ -15,7 +15,7 @@ function AcItem({ itemData }) {
   return (
     <Card
       raised
-      sx={{ height: "100%", display: "flex", flexDirection: "column" }}
+      sx={{ mb: 2, height: "20%", display: "flex", flexDirection: "column" }}
       onClick={() => setAc(itemData.tail)}
       component={Link}
       to={`/${itemData.tail}`}
@@ -27,7 +27,7 @@ function AcItem({ itemData }) {
           image={itemData.image}
           alt={itemData.tail}
         />
-        <CardContent>
+        <CardContent sx={{mx: "auto", width: 100}}>
           <Typography gutterBottom variant="h5" component="h2">
             {itemData.tail}
           </Typography>

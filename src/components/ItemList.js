@@ -1,13 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import {
-  Box,
-  Card,
-  CardContent,
-  Container,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, Container, Typography } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 import AddBtn from "./AddBtn";
