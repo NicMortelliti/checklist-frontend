@@ -45,6 +45,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      <Toolbar />
       <div className="content">
         <Switch>
           {/* Render aircraft list component */}
