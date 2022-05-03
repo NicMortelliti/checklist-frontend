@@ -23,7 +23,7 @@ function Item({ itemData: { description, response } }) {
       style={{
         backgroundColor: currentPhase === "Emergency" ? "#E97A7A" : null,
       }}
-      sx={{ minWidth: 380 }}
+      sx={{ minWidth: 380, border: 1, borderColor: "primary.main" }}
     >
       <CardContent>
         <Typography variant="h6">{description}</Typography>

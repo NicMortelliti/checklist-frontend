@@ -22,8 +22,8 @@ function PhaseItem({ item }) {
         height: "20%",
         display: "flex",
         flexDirection: "column",
-        border: item === "Emergency" ? 3 : null,
-        borderColor: item === "Emergency" ? "error.main" : null,
+        border: item === "Emergency" ? 3 : 1,
+        borderColor: item === "Emergency" ? "error.main" : "primary.main",
       }}
       style={{ backgroundColor: item === "Emergency" ? "#E97A7A" : null }}
       onClick={() => setCurrentPhase(item)}

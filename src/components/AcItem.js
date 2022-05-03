@@ -15,7 +15,14 @@ function AcItem({ item }) {
   return (
     <Card
       raised
-      sx={{ mb: 2, height: "20%", display: "flex", flexDirection: "column" }}
+      sx={{
+        mb: 2,
+        height: "20%",
+        display: "flex",
+        flexDirection: "column",
+        border: 1,
+        borderColor: "primary.main",
+      }}
       onClick={() => setAc(item.tail)}
       component={Link}
       to={`/${item.tail}`}
