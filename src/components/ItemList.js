@@ -3,9 +3,8 @@ import { Container } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 import AddBtn from "./AddBtn";
-import AcItem from "./AcItem";
 import PhaseItem from "./PhaseItem";
-import Item from "./Item";
+import Item from "./Item2";
 
 function ItemList({ listItems }) {
   const { ac } = useContext(AcContext);
@@ -15,7 +14,7 @@ function ItemList({ listItems }) {
   const renderAcItems = (
     <div>
       {listItems.map(item => (
-        <AcItem key={item.id} item={item} />
+        <Item key={item.id} item={item} />
       ))}
     </div>
   );
