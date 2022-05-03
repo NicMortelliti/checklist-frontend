@@ -14,7 +14,12 @@ function ItemList({ listItems }) {
   const renderAcItems = (
     <div>
       {listItems.map(item => (
-        <Item key={item.id} item={item} />
+        <Item
+          key={item.id}
+          image={item.image}
+          head={item.tail}
+          subhead={item.model}
+        />
       ))}
     </div>
   );
