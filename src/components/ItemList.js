@@ -7,7 +7,7 @@ import PhaseItem from "./PhaseItem";
 import Item from "./Item2";
 
 function ItemList({ listItems }) {
-  const { ac } = useContext(AcContext);
+  const { ac, setAc } = useContext(AcContext);
   const { currentPhase } = useContext(PhaseContext);
 
   // Render list of aircraft
@@ -19,6 +19,8 @@ function ItemList({ listItems }) {
           image={item.image}
           head={item.tail}
           subhead={item.model}
+          route={item.tail}
+          handleClick={setAc}
         />
       ))}
     </div>

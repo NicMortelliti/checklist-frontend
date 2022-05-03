@@ -1,3 +1,5 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardActionArea,
@@ -5,7 +7,6 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import React from "react";
 
 // Props:
 //  item - AcItem
@@ -19,9 +20,21 @@ import React from "react";
 //  ac - AcItem
 //  setAc - AcItem
 //  setCurrentPhase - PhaseItem
-function Item({ item = null, image = null, head = null, subhead = null }) {
+function Item({
+  ac = null,
+  item = null,
+  image = null,
+  head = null,
+  subhead = null,
+  route = null,
+  handleClick = null,
+}) {
   return (
-    <Card>
+    <Card
+      onClick={() => handleClick(route)}
+      component={Link}
+      to={ac ! `/${head}` : `/${ac}/${head}`}
+    >
       <CardActionArea>
         {image ? (
           <CardMedia component="img" height="200" image={image} alt={head} />
