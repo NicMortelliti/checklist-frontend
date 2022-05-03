@@ -33,7 +33,7 @@ function Item({
     <Card
       onClick={() => handleClick(route)}
       component={Link}
-      to={ac ! `/${head}` : `/${ac}/${head}`}
+      to={ac === null ? `/${head}` : `/${ac}/${head}`}
     >
       <CardActionArea>
         {image ? (
