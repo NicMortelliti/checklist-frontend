@@ -3,8 +3,8 @@ import { Container } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 import AddBtn from "./AddBtn";
-import PhaseItem from "./PhaseItem";
-import Item from "./Item2";
+import CheckItem from "./CheckItem";
+import NavItem from "./NavItem";
 
 function ItemList({ listItems }) {
   const { ac, setAc } = useContext(AcContext);
@@ -14,7 +14,7 @@ function ItemList({ listItems }) {
   const renderAcItems = (
     <div>
       {listItems.map(item => (
-        <Item
+        <NavItem
           key={item.id}
           image={item.image}
           head={item.tail}
@@ -31,7 +31,7 @@ function ItemList({ listItems }) {
   const renderPhaseItems = (
     <div>
       {listItems.map(item => (
-        <Item
+        <NavItem
           key={item}
           head={item}
           route={`/${ac}/${item}`}
@@ -48,10 +48,10 @@ function ItemList({ listItems }) {
       {listItems.map(item =>
         ac === item.tail ? (
           currentPhase === item.phase ? (
-            <Item
+            <CheckItem
               key={item.id}
-              head={item.description}
-              subhead={item.response}
+              description={item.description}
+              response={item.response}
             />
           ) : null
         ) : null
