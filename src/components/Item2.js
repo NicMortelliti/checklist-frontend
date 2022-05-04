@@ -1,13 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import {
+  Button,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
+  Grid,
   Typography,
 } from "@mui/material";
 import { borderColor } from "@mui/system";
+import { PhaseContext } from "../context/phase"
 
 // Props:
 //  item - AcItem
@@ -31,6 +34,8 @@ function Item({
   handleClick = null,
   handleClickValue = null,
 }) {
+  const { currentPhase } = useContext(PhaseContext)
+
   return (
     <Card
       onClick={() => handleClick(handleClickValue)}
@@ -49,11 +54,22 @@ function Item({
       <CardActionArea>
         {/* If an image is provided as a prop, display it */}
         {image ? (<CardMedia component="img" height="200" image={image} alt={head} sx={{display: "flex"}} /> ) : null}
-        <CardContent sx={{ mx: "auto", width: 100 }}>
+        <CardContent>
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
           <Typography gutterBottom variant="h5" component="h2">{head}</Typography>
           
-          {/* If a subhead is provided as a prop, display it */}
-          {subhead ? (<Typography variant="body2" color="text.secondary">{subhead}</Typography>) : null}
+          {/* If currentPhase is not null, display button for checklist response 'subhead'. */}
+          {/* Otherwise, display the subhead, if provided as a prop, as a string. */}
+          {currentPhase
+            ? (<Button variant="contained" disableElevation fullWidth>{subhead}</Button>)
+            : (<Typography variant="body2" color="text.secondary">{subhead}</Typography>)}
+          </Grid>
         </CardContent>
       </CardActionArea>
     </Card>
