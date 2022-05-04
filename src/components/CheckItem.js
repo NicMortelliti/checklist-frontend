@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -7,30 +7,23 @@ import {
   Typography,
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import { PhaseContext } from "../context/phase";
 
-function Item({ itemData: { description, response } }) {
+function Item({ description, response }) {
   const [checkedState, setCheckedState] = useState(false);
-  const { currentPhase } = useContext(PhaseContext);
 
   const handleClick = () => {
     setCheckedState(!checkedState);
   };
 
   return (
-    <Card
-      raised
-      style={{
-        backgroundColor: currentPhase === "Emergency" ? "#E97A7A" : null,
-      }}
-      sx={{ minWidth: 380, border: 1, borderColor: "primary.main" }}
-    >
+    <Card raised sx={{ mb: 2 }}>
       <CardContent>
         <Typography variant="h6">{description}</Typography>
       </CardContent>
       <CardActions>
         <Button
-          sx={{ width: 1 }}
+          fullWidth
+          disableElevation
           variant={checkedState ? "contained" : "outlined"}
           style={{ backgroundColor: checkedState ? "green" : "white" }}
           color="success"
