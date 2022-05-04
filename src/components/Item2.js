@@ -7,6 +7,7 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { borderColor } from "@mui/system";
 
 // Props:
 //  item - AcItem
@@ -33,21 +34,25 @@ function Item({
     <Card
       onClick={() => handleClick(route)}
       component={Link}
-      to={ac === null ? `/${head}` : `/${ac}/${head}`}
+      to={route}
+      raised
+      sx={{
+        mb: 2,
+        height: "20%",
+        display: "flex",
+        flexDirection: "column",
+        border: 3,
+        borderColor: "error.main"
+      }}
     >
       <CardActionArea>
-        {image ? (
-          <CardMedia component="img" height="200" image={image} alt={head} />
-        ) : null}
+        {/* If an image is provided as a prop, display it */}
+        {image ? (<CardMedia component="img" height="200" image={image} alt={head} sx={{display: "flex"}} /> ) : null}
         <CardContent sx={{ mx: "auto", width: 100 }}>
-          <Typography gutterBottom variant="h5" component="h2">
-            {head}
-          </Typography>
-          {subhead ? (
-            <Typography variant="body2" color="text.secondary">
-              {subhead}
-            </Typography>
-          ) : null}
+          <Typography gutterBottom variant="h5" component="h2">{head}</Typography>
+          
+          {/* If a subhead is provided as a prop, display it */}
+          {subhead ? (<Typography variant="body2" color="text.secondary">{subhead}</Typography>) : null}
         </CardContent>
       </CardActionArea>
     </Card>

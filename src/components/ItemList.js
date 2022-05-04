@@ -8,7 +8,7 @@ import Item from "./Item2";
 
 function ItemList({ listItems }) {
   const { ac, setAc } = useContext(AcContext);
-  const { currentPhase } = useContext(PhaseContext);
+  const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
 
   // Render list of aircraft
   const renderAcItems = (
@@ -30,7 +30,12 @@ function ItemList({ listItems }) {
   const renderPhaseItems = (
     <div>
       {listItems.map(item => (
-        <PhaseItem key={item} item={item} />
+        <Item
+          key={item}
+          head={item}
+          route={`/${ac}/${item}`}
+          handleClick={setCurrentPhase}
+        />
       ))}
     </div>
   );
