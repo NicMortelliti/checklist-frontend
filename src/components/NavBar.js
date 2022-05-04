@@ -14,16 +14,30 @@ function NavBar() {
 
   // Render nav bar buttons
   const renderBtns = (
-    <div>
-      <Button
-        component={Link}
-        to={`/`}
-        color="inherit"
-        startIcon={<ChevronLeftIcon />}
-        onClick={() => setAc("")}
-      >
-        {ac}
-      </Button>
+    <>
+      {/*
+      Box display flex and flexGrow force components
+      after the box (e.g. Emergency btn) to be pushed to
+      the right of the display.
+      */}
+      <Box display="flex" flexGrow={1}>
+        <Button
+          component={Link}
+          to={`/`}
+          color="inherit"
+          startIcon={<ChevronLeftIcon />}
+          onClick={() => setAc("")}
+        >
+          {ac}
+        </Button>
+      </Box>
+
+      {/*
+      If a flight phase has been selected, then the app
+      is displaying the checklist items. In this case, we want
+      to show an Emergency button in the nav bar that is easily
+      accessible.
+      */}
       {currentPhase ? (
         <Button
           component={Link}
@@ -35,15 +49,18 @@ function NavBar() {
           EMERGENCY
         </Button>
       ) : null}
-    </div>
+    </>
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
-        <Toolbar>{ac ? renderBtns : renderMsg}</Toolbar>
-      </AppBar>
-    </Box>
+    <AppBar position="fixed">
+      {/*
+      If an aircraft hasn't been selected yet, display a message
+      in the nav bar instructing the user to select an aircraft.
+      Otherwise, display navigation buttons.
+      */}
+      <Toolbar>{ac ? renderBtns : renderMsg}</Toolbar>
+    </AppBar>
   );
 }
 export default NavBar;
