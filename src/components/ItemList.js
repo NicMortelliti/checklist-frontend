@@ -21,6 +21,7 @@ function ItemList({ listItems }) {
           subhead={item.model}
           route={item.tail}
           handleClick={setAc}
+          handleClickValue={item.tail}
         />
       ))}
     </div>
@@ -35,6 +36,7 @@ function ItemList({ listItems }) {
           head={item}
           route={`/${ac}/${item}`}
           handleClick={setCurrentPhase}
+          handleClickValue={item}
         />
       ))}
     </div>
@@ -46,7 +48,11 @@ function ItemList({ listItems }) {
       {listItems.map(item =>
         ac === item.tail ? (
           currentPhase === item.phase ? (
-            <Item key={item.id} itemData={item} />
+            <Item
+              key={item.id}
+              head={item.description}
+              subhead={item.response}
+            />
           ) : null
         ) : null
       )}

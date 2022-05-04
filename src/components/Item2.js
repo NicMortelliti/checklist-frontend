@@ -29,10 +29,11 @@ function Item({
   subhead = null,
   route = null,
   handleClick = null,
+  handleClickValue = null,
 }) {
   return (
     <Card
-      onClick={() => handleClick(route)}
+      onClick={() => handleClick(handleClickValue)}
       component={Link}
       to={route}
       raised
