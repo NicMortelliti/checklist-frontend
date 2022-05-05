@@ -3,9 +3,11 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 function NewItemResponse({ array, handleChange, label, controlValue }) {
   return (
-    <FormControl sx={{ mb: 1, width: 250 }}>
+    <FormControl sx={{ mb: 1, width: 1 }}>
       <InputLabel>{label}</InputLabel>
       <Select
+        required
+        sx={{ width: 1 }}
         value={controlValue}
         label={label}
         onChange={e => handleChange(e.target.value)}

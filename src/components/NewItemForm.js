@@ -55,20 +55,8 @@ function NewItemForm({ url, listItems, acArray, setAcArray }) {
   }
 
   return (
-    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-      <Paper variant="outlined" sx={{ my: 3, p: 2 }}>
-        <Typography variant="h5" color="inherit" align="center">
-          New Checklist Item
-        </Typography>
-        <Typography
-          variant="subtitle2"
-          color="inherit"
-          align="center"
-          gutterBottom
-        >
-          {ac}
-        </Typography>
-
+    <Container component="main" maxWidth="sm">
+      <Paper variant="outlined" sx={{ my: 2, p: 2 }}>
         <FormGroup>
           <FormControl>
             <Grid
@@ -78,21 +66,33 @@ function NewItemForm({ url, listItems, acArray, setAcArray }) {
               spacing={3}
             >
               <Grid item>
+                <Typography variant="h5" color="inherit" align="center">
+                  New Checklist Item
+                </Typography>
+                <Typography
+                  variant="subtitle2"
+                  color="inherit"
+                  align="center"
+                  gutterBottom
+                >
+                  {ac}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
                 <FormSelect
-                  required
                   array={listItems}
                   handleChange={setControlPhase}
                   label={"Phase of flight*"}
                   controlValue={controlPhase}
                 />
               </Grid>
-              <Grid item>
+              <Grid item xs={12}>
                 <NewItemDescription
                   call={controlCall}
                   setCall={setControlCall}
                 />
               </Grid>
-              <Grid item>
+              <Grid item xs={12}>
                 <FormSelect
                   array={responseOptions}
                   handleChange={setControlResponse}
