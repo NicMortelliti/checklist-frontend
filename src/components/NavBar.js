@@ -1,7 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material/";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import {
+  AppBar,
+  Box,
+  Button,
+  IconButton,
+  Toolbar,
+  Typography,
+} from "@mui/material/";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 
@@ -16,20 +23,30 @@ function NavBar() {
   const renderBtns = (
     <>
       {/*
-      Box display flex and flexGrow force components
-      after the box (e.g. Emergency btn) to be pushed to
-      the right of the display.
+      The Box component with its 'display' and 'flexGrow'
+      properties pushes components rendered after it (e.g.
+      Emergency btn) to be pushed to the right of the display.
       */}
       <Box display="flex" flexGrow={1}>
-        <Button
+        <IconButton
           component={Link}
           to={`/`}
+          size="large"
+          edge="start"
           color="inherit"
-          startIcon={<ChevronLeftIcon />}
+          sx={{ mr: 2 }}
           onClick={() => setAc("")}
         >
+          <ArrowBackIosNewIcon />
+        </IconButton>
+        <Typography
+          margin="auto"
+          variant="h5"
+          component="div"
+          sx={{ flexGrow: 1 }}
+        >
           {ac}
-        </Button>
+        </Typography>
       </Box>
 
       {/*
