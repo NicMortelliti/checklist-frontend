@@ -1,10 +1,18 @@
 import React, { useContext, useState } from "react";
-import { Button, FormControl, FormGroup, Paper } from "@mui/material";
+import {
+  Button,
+  Container,
+  FormControl,
+  FormGroup,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { AcContext } from "../context/ac";
 import NewItemDescription from "./NewItemDescription";
 import FormSelect from "./FormSelect";
 
-function NewItemForm({ url, acArray, setAcArray }) {
+function NewItemForm({ url, listItems, acArray, setAcArray }) {
   const { ac } = useContext(AcContext);
   const [controlPhase, setControlPhase] = useState("");
   const [controlCall, setControlCall] = useState("");
@@ -17,16 +25,6 @@ function NewItemForm({ url, acArray, setAcArray }) {
     "CHECK",
     "COMPLETE",
     "EXTEND",
-  ];
-
-  // Array of phases
-  const phaseOptions = [
-    "Preflight",
-    "Taxi",
-    "Takeoff",
-    "Cruise",
-    "Landing",
-    "Emergency",
   ];
 
   function handleSubmit(e) {
@@ -57,33 +55,66 @@ function NewItemForm({ url, acArray, setAcArray }) {
   }
 
   return (
-    <Paper sx={{ pt: "50px" }}>
-      <FormGroup>
-        <FormControl required>
-          <FormSelect
-            array={phaseOptions}
-            handleChange={setControlPhase}
-            label={"Phase of flight*"}
-            controlValue={controlPhase}
-          />
-          <NewItemDescription call={controlCall} setCall={setControlCall} />
-          <FormSelect
-            array={responseOptions}
-            handleChange={setControlResponse}
-            label={"Response*"}
-            controlValue={controlResponse}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            onClick={e => handleSubmit(e)}
-          >
-            Submit
-          </Button>
-        </FormControl>
-      </FormGroup>
-    </Paper>
+    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+      <Paper variant="outlined" sx={{ my: 3, p: 2 }}>
+        <Typography variant="h5" color="inherit" align="center">
+          New Checklist Item
+        </Typography>
+        <Typography
+          variant="subtitle2"
+          color="inherit"
+          align="center"
+          gutterBottom
+        >
+          {ac}
+        </Typography>
+
+        <FormGroup>
+          <FormControl>
+            <Grid
+              container
+              justifyContent="center"
+              alignItems="center"
+              spacing={3}
+            >
+              <Grid item>
+                <FormSelect
+                  required
+                  array={listItems}
+                  handleChange={setControlPhase}
+                  label={"Phase of flight*"}
+                  controlValue={controlPhase}
+                />
+              </Grid>
+              <Grid item>
+                <NewItemDescription
+                  call={controlCall}
+                  setCall={setControlCall}
+                />
+              </Grid>
+              <Grid item>
+                <FormSelect
+                  array={responseOptions}
+                  handleChange={setControlResponse}
+                  label={"Response*"}
+                  controlValue={controlResponse}
+                />
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  onClick={e => handleSubmit(e)}
+                >
+                  Submit
+                </Button>
+              </Grid>
+            </Grid>
+          </FormControl>
+        </FormGroup>
+      </Paper>
+    </Container>
   );
 }
 

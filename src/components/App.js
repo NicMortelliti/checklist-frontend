@@ -16,7 +16,16 @@ function App() {
   const [acArray, setAcArray] = useState([]);
   const { ac } = useContext(AcContext);
   const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
-  const phases = ["Preflight", "Taxi", "Emergency"];
+
+  // Array of phases used by phase selection and new item form
+  const phases = [
+    "Preflight",
+    "Taxi",
+    "Takeoff",
+    "Cruise",
+    "Landing",
+    "Emergency",
+  ];
 
   // Fetch GET checklist data
   useEffect(() => {
@@ -66,7 +75,12 @@ function App() {
 
           {/* Render new checklist item form */}
           <Route exact path={`/${ac}/newitem`}>
-            <NewItemForm url={URL} acArray={acArray} setAcArray={setAcArray} />
+            <NewItemForm
+              url={URL}
+              listItems={phases}
+              acArray={acArray}
+              setAcArray={setAcArray}
+            />
           </Route>
 
           {/* Render page not found */}
