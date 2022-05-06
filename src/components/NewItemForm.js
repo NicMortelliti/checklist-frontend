@@ -61,9 +61,12 @@ function NewItemForm({ url, listItems, acArray, setAcArray }) {
   }
 
   function handleChange(e) {
+    // TextField uses 'id' while the select component uses 'name'
+    const id = e.target.id ? e.target.id : e.target.name;
+    console.table(e.target.id, e.target.name, id);
     setFormData({
       ...formData,
-      [e.target.id]: e.target.value,
+      [id]: e.target.value,
     });
   }
 
@@ -100,12 +103,14 @@ function NewItemForm({ url, listItems, acArray, setAcArray }) {
 
           {/* Checklist item response selection */}
           <FormControl>
-            <InputLabel>"Response"</InputLabel>
+            <InputLabel>Response *</InputLabel>
             <Select
+              id="response"
               required
               sx={{ mb: 1, width: 1 }}
               value={formData.response}
               label={"Response"}
+              name="response"
               onChange={handleChange}>
               {/*// ? need to map over an array to populate a select component? */}
               {RESPONSES.map((arrayItem) => (
