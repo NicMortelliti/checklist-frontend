@@ -91,19 +91,21 @@ function NewItemForm({ url, listItems, acArray, setAcArray }) {
           />
 
           {/* Checklist item response selection */}
-          <InputLabel>"Response"</InputLabel>
-          <Select
-            required
-            sx={{ width: 1 }}
-            value={formData.response}
-            label={"Response"}
-            onChange={(e) => setFormData(e.target.value)}>
-            {RESPONSES.map((arrayItem) => (
-              <MenuItem key={arrayItem} value={arrayItem}>
-                {arrayItem}
-              </MenuItem>
-            ))}
-          </Select>
+          <FormControl>
+            <InputLabel>"Response"</InputLabel>
+            <Select
+              required
+              sx={{ mb: 1, width: 1 }}
+              value={formData.response}
+              label={"Response"}
+              onChange={(e) => setFormData(e.target.value)}>
+              {RESPONSES.map((arrayItem) => (
+                <MenuItem key={arrayItem} value={arrayItem}>
+                  {arrayItem}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
           {/* Submit button */}
           <Button
