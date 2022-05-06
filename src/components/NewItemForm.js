@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Container,
@@ -60,6 +60,13 @@ function NewItemForm({ url, listItems, acArray, setAcArray }) {
     });
   }
 
+  function handleChange(e) {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  }
+
   return (
     // Constrain width of container with maxWidth property
     // in case page is displayed on desktop
@@ -82,12 +89,13 @@ function NewItemForm({ url, listItems, acArray, setAcArray }) {
 
           {/* Checklist item call text entry */}
           <TextField
+            id="call"
             required
             sx={{ mb: 1, width: 1 }}
             value={formData.call}
             label="Call (e.g. 'Parking Brake')"
             variant="outlined"
-            onChange={(e) => setFormData(e.target.value)}
+            onChange={handleChange}
           />
 
           {/* Checklist item response selection */}
@@ -98,7 +106,8 @@ function NewItemForm({ url, listItems, acArray, setAcArray }) {
               sx={{ mb: 1, width: 1 }}
               value={formData.response}
               label={"Response"}
-              onChange={(e) => setFormData(e.target.value)}>
+              onChange={handleChange}>
+              {/*// ? need to map over an array to populate a select component? */}
               {RESPONSES.map((arrayItem) => (
                 <MenuItem key={arrayItem} value={arrayItem}>
                   {arrayItem}
