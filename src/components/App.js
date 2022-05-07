@@ -33,7 +33,7 @@ function App() {
       .then((r) => r.json())
       .then((data) => {
         data.map((eachItem) => {
-          return (eachItem.checked = false);
+          return (eachItem.isChecked = false);
         });
         setRawDataArray(data);
       });
@@ -51,7 +51,21 @@ function App() {
     return ac ? null : setCurrentPhase("");
   }, [ac, setCurrentPhase]);
 
-  // If array is updated, re-render
+  // If checklist item is checked/unchecked update checked state
+  function handleCheck(id) {
+    const newRawDataArray = rawDataArray.map((item) => {
+      if (item.id === id) {
+        console.log(`Is Checked: ${item.isChecked}`);
+        return {
+          ...item,
+          isChecked: !item.isChecked,
+        };
+      } else {
+        return item;
+      }
+    });
+    setRawDataArray(newRawDataArray);
+  }
 
   return (
     <div className="App">
@@ -72,7 +86,7 @@ function App() {
           {/* Render checklist component */}
           {/* This worked --> path="/N6044P/Preflight" */}
           <Route exact path={`/${ac}/${currentPhase}`}>
-            <ItemList listItems={rawDataArray} />
+            <ItemList listItems={rawDataArray} handleClick={handleCheck} />
           </Route>
 
           {/* Render new checklist item form */}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Container } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
@@ -6,7 +6,7 @@ import AddBtn from "./AddBtn";
 import CheckItem from "./CheckItem";
 import NavItem from "./NavItem";
 
-function ItemList({ listItems }) {
+function ItemList({ listItems, handleClick = null }) {
   const { ac, setAc } = useContext(AcContext);
   const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
 
@@ -50,8 +50,11 @@ function ItemList({ listItems }) {
           currentPhase === item.phase ? (
             <CheckItem
               key={item.id}
+              id={item.id}
               description={item.description}
               response={item.response}
+              isChecked={item.isChecked}
+              handleClick={handleClick}
             />
           ) : null
         ) : null

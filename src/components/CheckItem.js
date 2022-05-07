@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Button,
   Card,
@@ -8,13 +8,7 @@ import {
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 
-function Item({ description, response }) {
-  const [checkedState, setCheckedState] = useState(false);
-
-  const handleClick = () => {
-    setCheckedState(!checkedState);
-  };
-
+function Item({ id, description, response, isChecked, handleClick }) {
   return (
     <Card raised sx={{ mb: 2 }}>
       <CardContent>
@@ -24,12 +18,11 @@ function Item({ description, response }) {
         <Button
           fullWidth
           disableElevation
-          variant={checkedState ? "contained" : "outlined"}
-          style={{ backgroundColor: checkedState ? "green" : "white" }}
+          variant={isChecked ? "contained" : "outlined"}
+          style={{ backgroundColor: isChecked ? "green" : "white" }}
           color="success"
-          onClick={handleClick}
-        >
-          {checkedState ? <CheckIcon /> : response}
+          onClick={() => handleClick(id)}>
+          {isChecked ? <CheckIcon /> : response}
         </Button>
       </CardActions>
     </Card>
