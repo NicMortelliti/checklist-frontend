@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Button,
   Container,
@@ -10,14 +10,15 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 
 // Array of responses
 const RESPONSES = ["70 KTS", "ACCESSIBLE", "CHECK", "COMPLETE", "EXTEND"];
 
-function NewItemForm({ url, listItems, acArray, setAcArray }) {
+function NewItemForm({ url, listItems, data, setData }) {
+  const history = useHistory();
   const { ac } = useContext(AcContext);
   const { currentPhase } = useContext(PhaseContext);
   const [formData, setFormData] = useState({
@@ -47,9 +48,12 @@ function NewItemForm({ url, listItems, acArray, setAcArray }) {
       body: JSON.stringify(itemData),
     })
       .then((r) => r.json())
-      .then((r) => console.log("Success:", JSON.stringify(r)))
-      .then((newItem) => setAcArray([...acArray, newItem]))
-      .then(updateStates);
+      .then((newItem) => {
+        console.log("Success:", JSON.stringify(newItem));
+        setData([...data, newItem]);
+        updateStates();
+        history.push(`/${ac}/${currentPhase}`);
+      });
   }
 
   // Clear controlled form data
@@ -63,7 +67,6 @@ function NewItemForm({ url, listItems, acArray, setAcArray }) {
   function handleChange(e) {
     // TextField uses 'id' while the select component uses 'name'
     const id = e.target.id ? e.target.id : e.target.name;
-    console.table(e.target.id, e.target.name, id);
     setFormData({
       ...formData,
       [id]: e.target.value,
@@ -112,7 +115,6 @@ function NewItemForm({ url, listItems, acArray, setAcArray }) {
               label={"Response"}
               name="response"
               onChange={handleChange}>
-              {/*// ? need to map over an array to populate a select component? */}
               {RESPONSES.map((arrayItem) => (
                 <MenuItem key={arrayItem} value={arrayItem}>
                   {arrayItem}

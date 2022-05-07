@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Container } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
@@ -13,7 +13,7 @@ function ItemList({ listItems }) {
   // Render list of aircraft
   const renderAcItems = (
     <div>
-      {listItems.map(item => (
+      {listItems.map((item) => (
         <NavItem
           key={item.id}
           image={item.image}
@@ -30,7 +30,7 @@ function ItemList({ listItems }) {
   // Render list of flight phases
   const renderPhaseItems = (
     <div>
-      {listItems.map(item => (
+      {listItems.map((item) => (
         <NavItem
           key={item}
           head={item}
@@ -45,7 +45,7 @@ function ItemList({ listItems }) {
   // Render list of checklist items
   const renderCheckItems = (
     <div>
-      {listItems.map(item =>
+      {listItems.map((item) =>
         ac === item.tail ? (
           currentPhase === item.phase ? (
             <CheckItem

@@ -30,9 +30,9 @@ function App() {
   // Fetch GET checklist data
   useEffect(() => {
     fetch(`${URL}/checklist`)
-      .then(r => r.json())
-      .then(data => {
-        data.map(eachItem => {
+      .then((r) => r.json())
+      .then((data) => {
+        data.map((eachItem) => {
           return (eachItem.checked = false);
         });
         setRawDataArray(data);
@@ -42,14 +42,16 @@ function App() {
   // Fetch GET aircraft data
   useEffect(() => {
     fetch(`${URL}/aircraft`)
-      .then(r => r.json())
-      .then(data => setAcArray(data));
+      .then((r) => r.json())
+      .then((data) => setAcArray(data));
   }, []);
 
   // If Aircraft is not selected, set current phase to blank string
   useEffect(() => {
     return ac ? null : setCurrentPhase("");
   }, [ac, setCurrentPhase]);
+
+  // If array is updated, re-render
 
   return (
     <div className="App">
@@ -78,8 +80,8 @@ function App() {
             <NewItemForm
               url={URL}
               listItems={phases}
-              acArray={acArray}
-              setAcArray={setAcArray}
+              data={rawDataArray}
+              setData={setRawDataArray}
             />
           </Route>
 
