@@ -32,11 +32,11 @@ function ItemList({ listItems, handleClick = null }) {
     <div>
       {listItems.map((item) => (
         <NavItem
-          key={item}
-          head={item}
-          route={`/${ac}/${item}`}
+          key={item.id}
+          head={item.phase}
+          route={`/${ac}/${item.phase}`}
           handleClick={setCurrentPhase}
-          handleClickValue={item}
+          handleClickValue={item.phase}
         />
       ))}
     </div>

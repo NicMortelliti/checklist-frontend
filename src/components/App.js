@@ -14,18 +14,12 @@ function App() {
   // Set up states
   const [rawDataArray, setRawDataArray] = useState([]);
   const [acArray, setAcArray] = useState([]);
+  const [phaseArray, setPhaseArray] = useState([]);
+  const [responseArray, setResponseArray] = useState([]);
+
+  // Set up contexts
   const { ac } = useContext(AcContext);
   const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
-
-  // Array of phases used by phase selection and new item form
-  const phases = [
-    "Preflight",
-    "Taxi",
-    "Takeoff",
-    "Cruise",
-    "Landing",
-    "Emergency",
-  ];
 
   // Fetch GET checklist data
   useEffect(() => {
@@ -46,6 +40,20 @@ function App() {
       .then((data) => setAcArray(data));
   }, []);
 
+  // Fetch GET phase data
+  useEffect(() => {
+    fetch(`${URL}/phases`)
+      .then((r) => r.json())
+      .then((data) => setPhaseArray(data));
+  }, []);
+
+  // Fetch GET response data
+  useEffect(() => {
+    fetch(`${URL}/responses`)
+      .then((r) => r.json())
+      .then((data) => setResponseArray(data));
+  }, []);
+
   // If Aircraft is not selected, set current phase to blank string
   useEffect(() => {
     return ac ? null : setCurrentPhase("");
@@ -55,7 +63,6 @@ function App() {
   function handleCheck(id) {
     const newRawDataArray = rawDataArray.map((item) => {
       if (item.id === id) {
-        console.log(`Is Checked: ${item.isChecked}`);
         return {
           ...item,
           isChecked: !item.isChecked,
@@ -80,7 +87,7 @@ function App() {
 
           {/* Render flight phase selection page */}
           <Route exact path={`/${ac}`}>
-            <ItemList listItems={phases} />
+            <ItemList listItems={phaseArray} />
           </Route>
 
           {/* Render checklist component */}
@@ -93,7 +100,7 @@ function App() {
           <Route exact path={`/${ac}/newitem`}>
             <NewItemForm
               url={URL}
-              listItems={phases}
+              listItems={responseArray}
               data={rawDataArray}
               setData={setRawDataArray}
             />

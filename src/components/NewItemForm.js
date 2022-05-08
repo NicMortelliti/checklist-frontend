@@ -14,9 +14,6 @@ import { Link, useHistory } from "react-router-dom";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 
-// Array of responses
-const RESPONSES = ["70 KTS", "ACCESSIBLE", "CHECK", "COMPLETE", "EXTEND"];
-
 function NewItemForm({ url, listItems, data, setData }) {
   const history = useHistory();
   const { ac } = useContext(AcContext);
@@ -115,9 +112,9 @@ function NewItemForm({ url, listItems, data, setData }) {
               label={"Response"}
               name="response"
               onChange={handleChange}>
-              {RESPONSES.map((arrayItem) => (
-                <MenuItem key={arrayItem} value={arrayItem}>
-                  {arrayItem}
+              {listItems.map((arrayItem) => (
+                <MenuItem key={arrayItem.id} value={arrayItem.response}>
+                  {arrayItem.response}
                 </MenuItem>
               ))}
             </Select>
