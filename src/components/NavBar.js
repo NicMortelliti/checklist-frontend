@@ -44,6 +44,7 @@ function NavBar() {
           component="div"
           sx={{ flexGrow: 1 }}>
           {ac}
+          {currentPhase ? ` - ${currentPhase}` : null}
         </Typography>
       </Box>
 
