@@ -16,7 +16,7 @@ import { PhaseContext } from "../context/phase";
 
 function NewItemForm({ url, listItems, data, setData }) {
   const history = useHistory();
-  const { ac } = useContext(AcContext);
+  const { currentAc } = useContext(AcContext);
   const { currentPhase } = useContext(PhaseContext);
   const [formData, setFormData] = useState({
     call: "",
@@ -30,7 +30,7 @@ function NewItemForm({ url, listItems, data, setData }) {
 
     // Put information into single variable
     const itemData = {
-      tail: ac,
+      tail: currentAc,
       phase: currentPhase,
       description: formData.call,
       response: formData.response,
@@ -49,7 +49,7 @@ function NewItemForm({ url, listItems, data, setData }) {
         console.log("Success:", JSON.stringify(newItem));
         setData([...data, newItem]);
         updateStates();
-        history.push(`/${ac}/${currentPhase}`);
+        history.push(`/${currentAc}/${currentPhase}`);
       });
   }
 
@@ -87,7 +87,7 @@ function NewItemForm({ url, listItems, data, setData }) {
             color="inherit"
             align="center"
             gutterBottom>
-            {ac} - {currentPhase}
+            {currentAc} - {currentPhase}
           </Typography>
 
           {/* Checklist item call text entry */}
@@ -132,7 +132,7 @@ function NewItemForm({ url, listItems, data, setData }) {
             color="primary"
             type="submit"
             component={Link}
-            to={`/${ac}/${currentPhase}`}
+            to={`/${currentAc}/${currentPhase}`}
             onClick={(e) => handleSubmit(e)}>
             Submit
           </Button>
