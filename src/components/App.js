@@ -12,7 +12,7 @@ const URL = "http://localhost:3000";
 
 function App() {
   // Set up states
-  const [rawDataArray, setRawDataArray] = useState([]);
+  const [checklistArray, setChecklistArray] = useState([]);
   const [acArray, setAcArray] = useState([]);
   const [phaseArray, setPhaseArray] = useState([]);
   const [responseArray, setResponseArray] = useState([]);
@@ -21,37 +21,31 @@ function App() {
   const { ac } = useContext(AcContext);
   const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
 
-  // Fetch GET checklist data
+  // Fetch GET data from backend
   useEffect(() => {
-    fetch(`${URL}/checklist`)
-      .then((r) => r.json())
-      .then((data) => {
-        data.map((eachItem) => {
-          return (eachItem.isChecked = false);
-        });
-        setRawDataArray(data);
-      });
-  }, []);
-
-  // Fetch GET aircraft data
-  useEffect(() => {
-    fetch(`${URL}/aircraft`)
-      .then((r) => r.json())
-      .then((data) => setAcArray(data));
-  }, []);
-
-  // Fetch GET phase data
-  useEffect(() => {
-    fetch(`${URL}/phases`)
-      .then((r) => r.json())
-      .then((data) => setPhaseArray(data));
-  }, []);
-
-  // Fetch GET response data
-  useEffect(() => {
-    fetch(`${URL}/responses`)
-      .then((r) => r.json())
-      .then((data) => setResponseArray(data));
+    // Iterate through this object
+    [
+      {
+        category: "checklist",
+        stateSetter: setChecklistArray,
+      },
+      {
+        category: "aircraft",
+        stateSetter: setAcArray,
+      },
+      {
+        category: "phases",
+        stateSetter: setPhaseArray,
+      },
+      {
+        category: "responses",
+        stateSetter: setResponseArray,
+      },
+    ].forEach((state) => {
+      fetch(`${URL}/${state.category}`)
+        .then((r) => r.json())
+        .then((data) => state.stateSetter(data));
+    });
   }, []);
 
   // If Aircraft is not selected, set current phase to blank string
@@ -61,7 +55,7 @@ function App() {
 
   // If checklist item is checked/unchecked update checked state
   function handleCheck(id) {
-    const newRawDataArray = rawDataArray.map((item) => {
+    const newRawDataArray = checklistArray.map((item) => {
       if (item.id === id) {
         return {
           ...item,
@@ -71,7 +65,7 @@ function App() {
         return item;
       }
     });
-    setRawDataArray(newRawDataArray);
+    setChecklistArray(newRawDataArray);
   }
 
   return (
@@ -93,7 +87,7 @@ function App() {
           {/* Render checklist component */}
           {/* This worked --> path="/N6044P/Preflight" */}
           <Route exact path={`/${ac}/${currentPhase}`}>
-            <ItemList listItems={rawDataArray} handleClick={handleCheck} />
+            <ItemList listItems={checklistArray} handleClick={handleCheck} />
           </Route>
 
           {/* Render new checklist item form */}
@@ -101,8 +95,8 @@ function App() {
             <NewItemForm
               url={URL}
               listItems={responseArray}
-              data={rawDataArray}
-              setData={setRawDataArray}
+              data={checklistArray}
+              setData={setChecklistArray}
             />
           </Route>
 
