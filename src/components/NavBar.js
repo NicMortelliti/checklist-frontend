@@ -15,7 +15,7 @@ import { PhaseContext } from "../context/phase";
 
 function NavBar() {
   const history = useHistory();
-  const { ac } = useContext(AcContext);
+  const { currentAc } = useContext(AcContext);
   const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
 
   // Render nav bar message
@@ -43,7 +43,7 @@ function NavBar() {
           variant="h5"
           component="div"
           sx={{ flexGrow: 1 }}>
-          {ac}
+          {currentAc}
           {currentPhase ? ` - ${currentPhase}` : null}
         </Typography>
       </Box>
@@ -55,14 +55,16 @@ function NavBar() {
       accessible.
       */}
       {currentPhase ? (
-        <Button
-          component={Link}
-          to={`/${ac}/Emergency`}
-          color="error"
-          variant="contained"
-          onClick={() => setCurrentPhase("Emergency")}>
-          EMERGENCY
-        </Button>
+        currentPhase !== "Emergency" ? (
+          <Button
+            component={Link}
+            to={`/${currentAc}/Emergency`}
+            color="error"
+            variant="contained"
+            onClick={() => setCurrentPhase("Emergency")}>
+            EMERGENCY
+          </Button>
+        ) : null
       ) : null}
     </>
   );
@@ -74,7 +76,7 @@ function NavBar() {
       in the nav bar instructing the user to select an aircraft.
       Otherwise, display navigation buttons.
       */}
-      <Toolbar>{ac ? renderBtns : renderMsg}</Toolbar>
+      <Toolbar>{currentAc ? renderBtns : renderMsg}</Toolbar>
     </AppBar>
   );
 }
