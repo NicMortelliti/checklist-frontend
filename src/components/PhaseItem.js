@@ -4,20 +4,22 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  CardMedia,
   Grid,
   Typography,
 } from "@mui/material";
 import { AcContext } from "../context/ac";
+import { PhaseContext } from "../context/phase";
 
-function AcItem({ data: { tail, model, image } }) {
-  const { setCurrentAc } = useContext(AcContext);
+// image and subhead props are not always provided. Set these to default to null.
+function PhaseItem({ data: { phase } }) {
+  const { currentAc } = useContext(AcContext);
+  const { setCurrentPhase } = useContext(PhaseContext);
 
   return (
     <Card
-      onClick={() => setCurrentAc(tail)}
+      onClick={() => setCurrentPhase(phase)}
       component={Link}
-      to={`/${tail}`}
+      to={`/${currentAc}/${phase}`}
       raised
       sx={{
         mb: 2,
@@ -25,13 +27,6 @@ function AcItem({ data: { tail, model, image } }) {
         flexDirection: "column",
       }}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          height="200"
-          image={image}
-          alt={tail}
-          sx={{ display: "flex" }}
-        />
         <CardContent>
           <Grid
             container
@@ -40,10 +35,7 @@ function AcItem({ data: { tail, model, image } }) {
             alignItems="center"
             justify="center">
             <Typography variant="h5" component="h2">
-              {tail}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {model}
+              {phase}
             </Typography>
           </Grid>
         </CardContent>
@@ -52,4 +44,4 @@ function AcItem({ data: { tail, model, image } }) {
   );
 }
 
-export default AcItem;
+export default PhaseItem;

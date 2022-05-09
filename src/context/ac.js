@@ -3,9 +3,11 @@ import React, { useState } from "react";
 const AcContext = React.createContext();
 
 function AcProvider({ children }) {
-  const [ac, setAc] = useState("");
+  const [currentAc, setCurrentAc] = useState("");
   return (
-    <AcContext.Provider value={{ ac, setAc }}>{children}</AcContext.Provider>
+    <AcContext.Provider value={{ currentAc, setCurrentAc }}>
+      {children}
+    </AcContext.Provider>
   );
 }
 

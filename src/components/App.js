@@ -3,7 +3,10 @@ import { Route, Switch } from "react-router-dom";
 import { Toolbar } from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
-import ItemList from "./ItemList";
+import AddBtn from "./AddBtn";
+import AcList from "./AcList";
+import CheckList from "./CheckList";
+import PhaseList from "./PhaseList";
 import NavBar from "./NavBar";
 import NewItemForm from "./NewItemForm";
 
@@ -18,7 +21,7 @@ function App() {
   const [responseArray, setResponseArray] = useState([]);
 
   // Set up contexts
-  const { ac } = useContext(AcContext);
+  const { currentAc } = useContext(AcContext);
   const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
 
   // Fetch GET data from backend
@@ -50,8 +53,8 @@ function App() {
 
   // If Aircraft is not selected, set current phase to blank string
   useEffect(() => {
-    return ac ? null : setCurrentPhase("");
-  }, [ac, setCurrentPhase]);
+    return currentAc ? null : setCurrentPhase("");
+  }, [currentAc, setCurrentPhase]);
 
   // If checklist item is checked/unchecked update checked state
   function handleCheck(id) {
@@ -72,26 +75,28 @@ function App() {
     <div className="App">
       <NavBar />
       <Toolbar />
+      {/* Display AddBtn component only when checklist is displayed */}
+      {currentPhase ? <AddBtn /> : null}
       <div className="content">
         <Switch>
           {/* Render aircraft list component */}
           <Route exact path="/">
-            <ItemList listItems={acArray} />
+            <AcList aircraft={acArray} />
           </Route>
 
           {/* Render flight phase selection page */}
-          <Route exact path={`/${ac}`}>
-            <ItemList listItems={phaseArray} />
+          <Route exact path={`/${currentAc}`}>
+            <PhaseList phases={phaseArray} />
           </Route>
 
           {/* Render checklist component */}
           {/* This worked --> path="/N6044P/Preflight" */}
-          <Route exact path={`/${ac}/${currentPhase}`}>
-            <ItemList listItems={checklistArray} handleClick={handleCheck} />
+          <Route exact path={`/${currentAc}/${currentPhase}`}>
+            <CheckList checklist={checklistArray} handleClick={handleCheck} />
           </Route>
 
           {/* Render new checklist item form */}
-          <Route exact path={`/${ac}/newitem`}>
+          <Route exact path={`/${currentAc}/newitem`}>
             <NewItemForm
               url={URL}
               listItems={responseArray}

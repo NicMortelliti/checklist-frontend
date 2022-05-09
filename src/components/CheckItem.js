@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 
-function Item({ id, description, response, isChecked, handleClick }) {
+function Item({ data: { id, description, response, isChecked }, handleClick }) {
   return (
     <Card raised sx={{ mb: 2 }}>
       <CardContent>
