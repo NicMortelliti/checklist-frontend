@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Flying Checklist
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React application that digitizes the paper checklist commonly used by pilots. An aircraft owner/operator populates the backend database with information regarding the aircraft in their fleet (e.g. tail number, make, model and a link to an image of the aircraft), as well as checklist items categorized by phase of flight. The user has the capability to add new checklist items as well using the New Item Form.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+**Note: This is the front-end of the application only. For it to work properly, you must also install and run the backend, [found here](https://github.com/NicMortelliti/checklist-backend).**
 
-### `npm start`
+Clone this repo to a local directory.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Use the package manager [npm](https://www.npmjs.com/) to install the dependencies.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+$ npm install
+```
 
-### `npm test`
+Finally, start the server on port 3001. TIP: Start the backend server first, this will force server.js to find the next open port, which will likely be 3001.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+$ npm start
+```
 
-### `npm run build`
+## Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Displaying a checklist
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+In a web browser, navigate to localhost:3001.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Select an aircraft card from the list of aircraft.
 
-### `npm run eject`
+Select a phase card from the list of flight phases.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+When a checklist item is completed, select the associated response button (e.g. CHECK, VERIFY, EXTEND, etc.) to mark it as complete.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Adding a new checklist item
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+With a checklist displayed, you may add a new checklist item to the current list by selecting the "+" button in the lower-right corner of the checklist.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Confirm the form subtitle displays the aircraft and flight phase you intend to add to.
 
-## Learn More
+Enter a checklist item description (e.g. "Landing Gear", "Fuel Selector", "Passenger Briefing", etc.) in the "Call" field.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Select the appropriate response to the checklist item in the "Response" field.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Select the Submit button. The new checklist item will be added to the database and populated on the checklist page.
 
-### Code Splitting
+### Emergency
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The emergency checklist can be accessed two ways. You can navigate there the normal way (i.e. Select aircraft, select flight phase, in this case "Emergency"). Or, you may select the Emergency button at the top-left of the page.
 
-### Analyzing the Bundle Size
+\*\*Note: An aircraft must be selected for the red Emergency button to be displayed.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Acknowledgements
 
-### Making a Progressive Web App
+### Cessna Skycatcher Image:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[Ahunt, Public domain, via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cessna_162_Skycatcher_N5201K_0998.JPG/320px-Cessna_162_Skycatcher_N5201K_0998.JPG)
 
-### Advanced Configuration
+### Airbus A220 Image:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+[Romain COUPY, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Airbus_A220-300.jpg/320px-Airbus_A220-300.jpg)
 
-### Deployment
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[MIT](https://choosealicense.com/licenses/mit/)
