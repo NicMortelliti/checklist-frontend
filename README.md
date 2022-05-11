@@ -48,7 +48,7 @@ Select the Submit button. The new checklist item will be added to the database a
 
 The emergency checklist can be accessed two ways. You can navigate there the normal way (i.e. Select aircraft, select flight phase, in this case "Emergency"). Or, you may select the Emergency button at the top-left of the page.
 
-\*\*Note: An aircraft must be selected for the red Emergency button to be displayed.
+**Note: The red emergency button is only displayed when an aircraft is selected.**
 
 ## Acknowledgements
 
