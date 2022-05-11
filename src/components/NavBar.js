@@ -54,7 +54,7 @@ function NavBar() {
       to show an Emergency button in the nav bar that is easily
       accessible.
       */}
-      {currentPhase ? (
+      {currentAc ? (
         currentPhase !== "Emergency" ? (
           <Button
             component={Link}
