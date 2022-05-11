@@ -70,7 +70,10 @@ function NavBar() {
   );
 
   return (
-    <AppBar position="fixed">
+    <AppBar
+      position="fixed"
+      // Set color of app bar according to current phase
+      color={currentPhase === "Emergency" ? "error" : "primary"}>
       {/*
       If an aircraft hasn't been selected yet, display a message
       in the nav bar instructing the user to select an aircraft.
