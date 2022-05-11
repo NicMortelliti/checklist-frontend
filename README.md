@@ -22,6 +22,8 @@ $ npm start
 
 ## Usage
 
+![Usage demo](assets/screencasts/UsageDemo.gif)
+
 ### Displaying a checklist
 
 In a web browser, navigate to localhost:3001.
