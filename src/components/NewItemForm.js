@@ -46,7 +46,6 @@ function NewItemForm({ url, listItems, data, setData }) {
     })
       .then((r) => r.json())
       .then((newItem) => {
-        console.log("Success:", JSON.stringify(newItem));
         setData([...data, newItem]);
         updateStates();
         history.push(`/${currentAc}/${currentPhase}`);
