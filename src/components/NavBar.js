@@ -11,12 +11,14 @@ import {
 import { useHistory } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { AcContext } from "../context/ac";
+import { EmergencyContext } from "../context/emergency";
 import { PhaseContext } from "../context/phase";
 
 function NavBar() {
   const history = useHistory();
   const { currentAc } = useContext(AcContext);
-  const { currentPhase, setCurrentPhase } = useContext(PhaseContext);
+  const { isEmergency, setIsEmergency } = useContext(EmergencyContext);
+  const { currentPhase } = useContext(PhaseContext);
 
   // Render nav bar message
   const renderMsg = <Typography variant="h6">Select an aircraft...</Typography>;
@@ -35,7 +37,7 @@ function NavBar() {
           edge="start"
           color="inherit"
           sx={{ mr: 2 }}
-          onClick={() => history.goBack()}>
+          onClick={() => handleBack()}>
           <ArrowBackIosNewIcon />
         </IconButton>
         <Typography
@@ -44,7 +46,11 @@ function NavBar() {
           component="div"
           sx={{ flexGrow: 1 }}>
           {currentAc}
-          {currentPhase ? ` - ${currentPhase}` : null}
+          {isEmergency
+            ? " - Emergency"
+            : currentPhase
+            ? ` - ${currentPhase}`
+            : null}
         </Typography>
       </Box>
 
@@ -55,25 +61,30 @@ function NavBar() {
       accessible.
       */}
       {currentAc ? (
-        currentPhase !== "Emergency" ? (
+        isEmergency ? null : (
           <Button
             component={Link}
             to={`/${currentAc}/Emergency`}
             color="error"
             variant="contained"
-            onClick={() => setCurrentPhase("Emergency")}>
+            onClick={() => setIsEmergency(true)}>
             EMERGENCY
           </Button>
-        ) : null
+        )
       ) : null}
     </>
   );
+
+  function handleBack() {
+    setIsEmergency(false);
+    history.goBack();
+  }
 
   return (
     <AppBar
       position="fixed"
       // Set color of app bar according to current phase
-      color={currentPhase === "Emergency" ? "error" : "primary"}>
+      color={isEmergency ? "error" : "primary"}>
       {/*
       If an aircraft hasn't been selected yet, display a message
       in the nav bar instructing the user to select an aircraft.

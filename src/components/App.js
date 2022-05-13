@@ -89,7 +89,7 @@ function App() {
             <PhaseList phases={phaseArray} />
           </Route>
 
-          {/* Render checklist component */}
+          {/* Render checklist component if not Emergency */}
           {/* This worked --> path="/N6044P/Preflight" */}
           <Route exact path={`/${currentAc}/${currentPhase}`}>
             <CheckList checklist={checklistArray} handleClick={handleCheck} />
