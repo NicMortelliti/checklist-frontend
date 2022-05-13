@@ -10,7 +10,6 @@ import {
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 
-// image and subhead props are not always provided. Set these to default to null.
 function PhaseItem({ data: { phase } }) {
   const { currentAc } = useContext(AcContext);
   const { setCurrentPhase } = useContext(PhaseContext);
