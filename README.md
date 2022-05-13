@@ -13,7 +13,7 @@ This is a React application that digitizes the paper checklist commonly used by 
 2. Use the package manager [npm](https://www.npmjs.com/) to install the dependencies.
 
 ```bash
-$ npm install
+$ npm install --legacy-peer-deps
 ```
 
 3. Finally, start the server on port 3001. TIP: Start the backend server first, this will force server.js to find the next open port, which will likely be 3001.
