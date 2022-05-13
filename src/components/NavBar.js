@@ -40,7 +40,7 @@ function NavBar() {
         </IconButton>
         <Typography
           margin="auto"
-          variant="h5"
+          variant="h6"
           component="div"
           sx={{ flexGrow: 1 }}>
           {currentAc}
