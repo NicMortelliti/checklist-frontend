@@ -14,7 +14,6 @@ function PhaseItem({ data: { phase } }) {
 
   return (
     <Card
-      onClick={() => console.log(`/${currentAc}/${phase}`)}
       component={Link}
       to={`/${currentAc}/${phase}`}
       raised

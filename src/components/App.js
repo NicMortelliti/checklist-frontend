@@ -95,7 +95,6 @@ function App() {
             return phaseArray.map((phase) => {
               return (
                 <Route key={phase.id} exact path={`/${ac.tail}/${phase.phase}`}>
-                  {console.log(`App /${ac.tail}/${phase.phase}`)}
                   <CheckList
                     checklist={checklistArray}
                     phase={phase.phase}
