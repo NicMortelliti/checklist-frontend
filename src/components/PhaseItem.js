@@ -8,15 +8,13 @@ import {
   Typography,
 } from "@mui/material";
 import { AcContext } from "../context/ac";
-import { PhaseContext } from "../context/phase";
 
 function PhaseItem({ data: { phase } }) {
   const { currentAc } = useContext(AcContext);
-  const { setCurrentPhase } = useContext(PhaseContext);
 
   return (
     <Card
-      onClick={() => setCurrentPhase(phase)}
+      onClick={() => console.log(`/${currentAc}/${phase}`)}
       component={Link}
       to={`/${currentAc}/${phase}`}
       raised

@@ -11,13 +11,11 @@ import {
 import { useHistory } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { AcContext } from "../context/ac";
-import { EmergencyContext } from "../context/emergency";
 import { PhaseContext } from "../context/phase";
 
 function NavBar() {
   const history = useHistory();
   const { currentAc } = useContext(AcContext);
-  const { isEmergency, setIsEmergency } = useContext(EmergencyContext);
   const { currentPhase } = useContext(PhaseContext);
 
   // Render nav bar message
@@ -46,11 +44,7 @@ function NavBar() {
           component="div"
           sx={{ flexGrow: 1 }}>
           {currentAc}
-          {isEmergency
-            ? " - Emergency"
-            : currentPhase
-            ? ` - ${currentPhase}`
-            : null}
+          {currentPhase ? ` - ${currentPhase}` : null}
         </Typography>
       </Box>
 
@@ -61,22 +55,20 @@ function NavBar() {
       accessible.
       */}
       {currentAc ? (
-        isEmergency ? null : (
+        currentPhase !== "Emergency" ? (
           <Button
             component={Link}
             to={`/${currentAc}/Emergency`}
             color="error"
-            variant="contained"
-            onClick={() => setIsEmergency(true)}>
+            variant="contained">
             EMERGENCY
           </Button>
-        )
+        ) : null
       ) : null}
     </>
   );
 
   function handleBack() {
-    setIsEmergency(false);
     history.goBack();
   }
 
@@ -84,7 +76,7 @@ function NavBar() {
     <AppBar
       position="fixed"
       // Set color of app bar according to current phase
-      color={isEmergency ? "error" : "primary"}>
+      color={currentPhase === "Emergency" ? "error" : "primary"}>
       {/*
       If an aircraft hasn't been selected yet, display a message
       in the nav bar instructing the user to select an aircraft.

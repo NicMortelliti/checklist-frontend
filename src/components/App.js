@@ -91,9 +91,20 @@ function App() {
 
           {/* Render checklist component if not Emergency */}
           {/* This worked --> path="/N6044P/Preflight" */}
-          <Route exact path={`/${currentAc}/${currentPhase}`}>
-            <CheckList checklist={checklistArray} handleClick={handleCheck} />
-          </Route>
+          {acArray.map((ac) => {
+            return phaseArray.map((phase) => {
+              return (
+                <Route key={phase.id} exact path={`/${ac.tail}/${phase.phase}`}>
+                  {console.log(`App /${ac.tail}/${phase.phase}`)}
+                  <CheckList
+                    checklist={checklistArray}
+                    phase={phase.phase}
+                    handleClick={handleCheck}
+                  />
+                </Route>
+              );
+            });
+          })}
 
           {/* Render new checklist item form */}
           <Route exact path={`/${currentAc}/newitem`}>

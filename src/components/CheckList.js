@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Container } from "@mui/material";
 import { AcContext } from "../context/ac";
-import { EmergencyContext } from "../context/emergency";
 import { PhaseContext } from "../context/phase";
 import CheckItem from "./CheckItem";
 
-function CheckList({ checklist, handleClick }) {
+function CheckList({ checklist, phase, handleClick }) {
   const { currentAc } = useContext(AcContext);
-  const { currentPhase } = useContext(PhaseContext);
-  const { isEmergency } = useContext(EmergencyContext);
+  const { setCurrentPhase } = useContext(PhaseContext);
 
-  const phase = isEmergency ? "Emergency" : currentPhase;
-  console.log(phase)
+  useEffect(() => {
+    setCurrentPhase(phase);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
 
   return (
     <Container maxWidth="xs">
