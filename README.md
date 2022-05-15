@@ -1,6 +1,6 @@
 # Flying Checklist
 
-**Note: This app is only a meant to be a demonstration of React development. It is NOT intended to be used for flight.**
+**Note: This app is only meant to be a demonstration of React development. It is NOT intended to be used for flight.**
 
 This is a React application that digitizes the paper checklist commonly used by pilots. An aircraft owner/operator populates the backend database with information regarding the aircraft in their fleet (e.g. tail number, make, model and a link to an image of the aircraft), as well as checklist items categorized by phase of flight. The user has the capability to add new checklist items as well using the New Item Form.
 
@@ -16,7 +16,7 @@ This is a React application that digitizes the paper checklist commonly used by 
 $ npm install --legacy-peer-deps
 ```
 
-3. Finally, start the server on port 3001. TIP: Start the backend server first, this will force server.js to find the next open port, which will likely be 3001.
+3. Finally, start the server. TIP: This frontend looks for the backend on port 3000, so start the backend server first and ensure it is indeed running on port 3000.
 
 ```bash
 $ npm start
@@ -28,7 +28,7 @@ $ npm start
 
 ### Displaying a checklist
 
-1. In a web browser, navigate to localhost:3001.
+1. In a web browser, navigate to localhost:3001, unless the `npm start` command returned a different port number.
 
 2. Select an aircraft card from the list of aircraft.
 
@@ -46,11 +46,11 @@ $ npm start
 
 4. Select the appropriate response to the checklist item in the "Response" field.
 
-5. Select the Submit button. The new checklist item will be added to the database and populated on the checklist page.
+5. Select the Submit button. The new checklist item will be added to the database and populated at the bottom of the current checklist page.
 
 ### Emergency
 
-The emergency checklist can be accessed two ways. You can navigate there the normal way (i.e. Select aircraft, select flight phase, in this case "Emergency"). Or, you may select the Emergency button at the top-left of the page.
+The emergency checklist can be accessed two ways. You can navigate there the normal way (i.e. Select aircraft, select flight phase, in this case "Emergency"). Or, you may select the "EMER" button at the top-left of the page.
 
 **Note: The red emergency button is only displayed when an aircraft is selected.**
 
