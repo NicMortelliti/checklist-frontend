@@ -61,7 +61,7 @@ function NavBar() {
             to={`/${currentAc}/Emergency`}
             color="error"
             variant="contained">
-            EMERGENCY
+            EMER
           </Button>
         ) : null
       ) : null}
