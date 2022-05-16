@@ -11,7 +11,8 @@ import NavBar from "./NavBar";
 import NewItemForm from "./NewItemForm";
 
 // Set URL variable
-const URL = "http://localhost:3000";
+//const URL = "http://localhost:3000";
+const URL = `${process.env.REACT_APP_API_URL}`;
 
 function App() {
   // Set up states
