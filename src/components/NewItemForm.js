@@ -37,19 +37,23 @@ function NewItemForm({ url, listItems, data, setData }) {
     };
 
     // Fetch POST data to backend
-    fetch(`${url}/checklist`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(itemData),
-    })
-      .then((r) => r.json())
-      .then((newItem) => {
-        setData([...data, newItem]);
-        updateStates();
-        history.push(`/${currentAc}/${currentPhase}`);
-      });
+    // fetch(`${url}/checklist`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(itemData),
+    // })
+    //   .then((r) => r.json())
+    //   .then((newItem) => {
+    //     setData([...data, newItem]);
+    //     updateStates();
+    //     history.push(`/${currentAc}/${currentPhase}`);
+    //   });
+
+    setData([...data, itemData]);
+    updateStates();
+    history.push(`/${currentAc}/${currentPhase}`);
   }
 
   // Clear controlled form data
