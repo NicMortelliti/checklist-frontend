@@ -1,4 +1,5 @@
 # Flying Checklist
+[![Netlify Status](https://api.netlify.com/api/v1/badges/63103503-bd13-497a-adcf-b5c71094f99c/deploy-status)](https://app.netlify.com/sites/pilotchecklist/deploys)
 
 **Note: This app is only meant to be a demonstration of React development. It is NOT intended to be used for flight.**
 
