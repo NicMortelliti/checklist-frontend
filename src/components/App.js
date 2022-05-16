@@ -26,7 +26,7 @@ function App() {
 
   // Fetch GET data from backend
   useEffect(() => {
-    // Iterate through this object
+    // Iterate through this array
     [
       {
         category: "checklist",
