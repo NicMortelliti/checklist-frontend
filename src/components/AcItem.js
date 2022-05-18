@@ -6,6 +6,7 @@ import {
   CardContent,
   CardMedia,
   Grid,
+  Skeleton,
   Typography,
 } from "@mui/material";
 import { AcContext } from "../context/ac";
@@ -25,13 +26,17 @@ function AcItem({ data: { tail, model, image } }) {
         flexDirection: "column",
       }}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          height="200"
-          image={image}
-          alt={tail}
-          sx={{ display: "flex" }}
-        />
+        {image ? (
+          <CardMedia
+            component="img"
+            height="200"
+            image={image}
+            alt={tail}
+            sx={{ display: "flex" }}
+          />
+        ) : (
+          <Skeleton variant="rectangular" height={200} />
+        )}
         <CardContent>
           <Grid
             container
