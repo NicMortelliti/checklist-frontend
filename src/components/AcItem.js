@@ -14,19 +14,19 @@ import { AcContext } from "../context/ac";
 function AcItem({ data: { tail, model, image } }) {
   const { setCurrentAc } = useContext(AcContext);
 
-  return (
-    <Card
-      onClick={() => setCurrentAc(tail)}
-      component={Link}
-      to={`/${tail}`}
-      raised
-      sx={{
-        mb: 2,
-        display: "flex",
-        flexDirection: "column",
-      }}>
-      <CardActionArea>
-        {image ? (
+  const renderCard = () => {
+    return (
+      <Card
+        onClick={() => setCurrentAc(tail)}
+        component={Link}
+        to={`/${tail}`}
+        raised
+        sx={{
+          mb: 2,
+          display: "flex",
+          flexDirection: "column",
+        }}>
+        <CardActionArea>
           <CardMedia
             component="img"
             height="200"
@@ -34,27 +34,31 @@ function AcItem({ data: { tail, model, image } }) {
             alt={tail}
             sx={{ display: "flex" }}
           />
-        ) : (
-          <Skeleton variant="rectangular" height={200} />
-        )}
-        <CardContent>
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center">
-            <Typography variant="h5" component="h2">
-              {tail}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {model}
-            </Typography>
-          </Grid>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-  );
+          <CardContent>
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center">
+              <Typography variant="h5" component="h2">
+                {tail}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {model}
+              </Typography>
+            </Grid>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    );
+  };
+
+  const renderSkeleton = () => {
+    return <Skeleton variant="rectangular" height={200} />;
+  };
+
+  return <>{image ? renderCard : renderSkeleton}</>;
 }
 
 export default AcItem;
