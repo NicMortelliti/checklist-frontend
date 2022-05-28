@@ -10,10 +10,10 @@ import {
 } from "@mui/material";
 import { AcContext } from "../context/ac";
 
-function AcItem({ data, data: { tail, model, image } }) {
+function AcItem({ data: { tail, model, image } }) {
   const { setCurrentAc } = useContext(AcContext);
 
-  const renderCard = (
+  return (
     <Card
       onClick={() => setCurrentAc(tail)}
       component={Link}
@@ -50,10 +50,6 @@ function AcItem({ data, data: { tail, model, image } }) {
       </CardActionArea>
     </Card>
   );
-
-  // const renderSkeleton = <Skeleton variant="rectangular" height={200} />;
-
-  return <>{renderCard}</>;
 }
 
 export default AcItem;
