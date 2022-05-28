@@ -6,7 +6,6 @@ import {
   CardContent,
   CardMedia,
   Grid,
-  Skeleton,
   Typography,
 } from "@mui/material";
 import { AcContext } from "../context/ac";
@@ -52,9 +51,9 @@ function AcItem({ data, data: { tail, model, image } }) {
     </Card>
   );
 
-  const renderSkeleton = <Skeleton variant="rectangular" height={200} />;
+  // const renderSkeleton = <Skeleton variant="rectangular" height={200} />;
 
-  return <>{renderSkeleton}</>;
+  return <>{renderCard}</>;
 }
 
 export default AcItem;

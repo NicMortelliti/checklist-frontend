@@ -9,6 +9,7 @@ import CheckList from "./CheckList";
 import PhaseList from "./PhaseList";
 import NavBar from "./NavBar";
 import NewItemForm from "./NewItemForm";
+import { trackPromise } from "react-promise-tracker";
 
 // Set URL variable
 //const URL = "http://localhost:3000";
@@ -46,9 +47,11 @@ function App() {
         stateSetter: setResponseArray,
       },
     ].forEach((state) => {
-      fetch(`${URL}/${state.category}`)
-        .then((r) => r.json())
-        .then((data) => state.stateSetter(data));
+      trackPromise(
+        fetch(`${URL}/${state.category}`)
+          .then((r) => r.json())
+          .then((data) => state.stateSetter(data))
+      );
     });
   }, []);
 
