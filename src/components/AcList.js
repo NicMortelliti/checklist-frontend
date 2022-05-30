@@ -1,6 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { usePromiseTracker } from "react-promise-tracker";
-import { Container, Skeleton } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import { AcContext } from "../context/ac";
 import { PhaseContext } from "../context/phase";
 
@@ -19,17 +26,37 @@ function AcList({ aircraft }) {
     const { promiseInProgress } = usePromiseTracker();
     return (
       promiseInProgress && (
-        <Skeleton
-          variant="rectangular"
-	  animation="wave"
-          width={396}
-          height={284}
+        <Card
+          raised
           sx={{
             mb: 2,
             display: "flex",
             flexDirection: "column",
-          }}
-        />
+          }}>
+          <Skeleton
+            variant="rectangular"
+            animation="wave"
+            height={200}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          />
+          <CardContent>
+            <Grid
+              container
+              direction="column"
+              alignItems="center"
+              justify="center">
+              <Typography variant="body">
+                <Skeleton variant="text" width={110} />
+              </Typography>
+              <Typography variant="body">
+                <Skeleton variant="text" width={90} />
+              </Typography>
+            </Grid>
+          </CardContent>
+        </Card>
       )
     );
   };
