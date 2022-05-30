@@ -1,9 +1,14 @@
-# Flying Checklist
+# Flying Checklist - Frontend
 [![Netlify Status](https://api.netlify.com/api/v1/badges/63103503-bd13-497a-adcf-b5c71094f99c/deploy-status)](https://app.netlify.com/sites/pilotchecklist/deploys)
 
 **Note: This app is only meant to be a demonstration of React development. It is NOT intended to be used for flight.**
 
 This is a React application that digitizes the paper checklist commonly used by pilots. An aircraft owner/operator populates the backend database with information regarding the aircraft in their fleet (e.g. tail number, make, model and a link to an image of the aircraft), as well as checklist items categorized by phase of flight. The user has the capability to add new checklist items as well using the New Item Form.
+
+#### Table of Contents
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Acknowledgements](#acknowledgements)
 
 ## Installation
 
