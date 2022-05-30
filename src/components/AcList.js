@@ -21,6 +21,7 @@ function AcList({ aircraft }) {
       promiseInProgress && (
         <Skeleton
           variant="rectangular"
+	  animation="wave"
           width={396}
           height={284}
           sx={{
