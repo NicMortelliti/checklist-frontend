@@ -6,6 +6,7 @@ import { PhaseContext } from "../context/phase";
 import AddBtn from "./AddBtn";
 import AcList from "./AcList";
 import CheckList from "./CheckList";
+import Login from "./Login";
 import PhaseList from "./PhaseList";
 import NavBar from "./NavBar";
 import NewItemForm from "./NewItemForm";
@@ -117,6 +118,11 @@ function App() {
               data={checklistArray}
               setData={setChecklistArray}
             />
+          </Route>
+
+          {/* Render login page */}
+          <Route exact path={"/login"}>
+            <Login />
           </Route>
 
           {/* Render page not found */}

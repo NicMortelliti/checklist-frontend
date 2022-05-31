@@ -24,7 +24,7 @@ function NavBar() {
       <Box display="flex" flexGrow={1}>
         <Typography variant="h6">Select an aircraft...</Typography>{" "}
       </Box>
-      <Button color="primary" variant="outline">
+      <Button component={Link} to={"/Login"} color="primary" variant="outline">
         Log In
       </Button>
     </>
