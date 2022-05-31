@@ -19,7 +19,16 @@ function NavBar() {
   const { currentPhase } = useContext(PhaseContext);
 
   // Render nav bar message
-  const renderMsg = <Typography variant="h6">Select an aircraft...</Typography>;
+  const renderMsg = (
+    <>
+      <Box display="flex" flexGrow={1}>
+        <Typography variant="h6">Select an aircraft...</Typography>{" "}
+      </Box>
+      <Button color="primary" variant="outline">
+        Log In
+      </Button>
+    </>
+  );
 
   // Render nav bar buttons
   const renderBtns = (
